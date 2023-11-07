@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 
 class OrderController extends Controller
 {
@@ -16,6 +17,10 @@ class OrderController extends Controller
         return view('auth.orders.index', compact('orders'));
     }
 
+    /**
+     * @param Order $order
+     * @return RedirectResponse
+     */
     public function destroy(Order $order)
     {
         $order->delete();
