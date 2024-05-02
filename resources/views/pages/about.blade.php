@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="vantage">
+    <div class="vantage hidden">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <div class="page about">
+    <div class="page about hidden">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-12">
@@ -63,55 +63,6 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="gallery">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/1.jpg"><div class="img" style="background-image: url(img/1.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/3.jpg"><div class="img" style="background-image: url(img/3.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/1.jpg"><div class="img" style="background-image: url(img/1.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/4.jpg"><div class="img" style="background-image: url(img/4.jpg)"></div></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/6.jpg"><div class="img" style="background-image: url(img/6.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/5.jpg"><div class="img" style="background-image: url(img/5.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/8.jpg"><div class="img" style="background-image: url(img/8.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/7.jpg"><div class="img" style="background-image: url(img/7.jpg)"></div></a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

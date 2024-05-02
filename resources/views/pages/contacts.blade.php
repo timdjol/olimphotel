@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="pagetitle" style="background-image: url({{ url('/') }}/img/111.jpg)">
+    <div class="pagetitle" style="background-image: url({{ url('/') }}/img/page.jpg)">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="page contacts pt0">
+    <div class="page contacts">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-12">
@@ -29,13 +29,13 @@
                     <script>
                         DG.then(function () {
                             var map = DG.map('map', {
-                                center: [42.6512993, 77.1130353],
-                                zoom: 14
+                                center: [42.876510, 74.581205],
+                                zoom: 16
                             });
 
-                            DG.marker([42.6512993, 77.1130353], { scrollWheelZoom: false })
+                            DG.marker([42.876510, 74.581205], { scrollWheelZoom: false })
                                 .addTo(map)
-                                .bindLabel('OlimpHotel&Travel', {
+                                .bindLabel('SilkWayTravel', {
                                     static: true
                                 });
                         });

@@ -1,102 +1,74 @@
-@extends('layouts.master')
+@extends('layouts.login')
 
-@section('title', 'Главная страница')
+@section('title', 'Логин')
 
 @section('content')
-
-    <div class="slider">
-        <div class="owl-carousel owl-slider">
-            @foreach($sliders as $slider)
-                <div class="slider-item" style="background-image: url({{ Storage::url($slider->image) }})"></div>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="about">
+    <div class="page admin login">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="about-item">
-                        <div class="img" style="background-image: url({{ Storage::url($home->image) }})"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="about-item">
-                        <div class="text-wrap">
-                            <h2 data-aos="fade-up" data-aos-duration="2000">@lang('main.about')</h2>
-                            {!! $home->__('description') !!}
-                            <div class="btn-wrap" data-aos="fade-up" data-aos-duration="2000">
-                                <a href="{{route('about')}}" class="more">@lang('main.more')</a>
-                            </div>
+                <div class="col-lg-6 offset-lg-3 col-md-12">
+                    <img src="https://silkway.timmedia.store/img/logo.png" alt="">
+                    <h2>Авторизация</h2>
+                    <form method="POST" action="{{ route('login') }}">
+                        @error ('email')
+                        <div class="alert alert-danger">email</div>
+                        @enderror
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" name="email" value="{{ old('email', isset($user) ? $user->email :
+                             null) }}">
                         </div>
-                    </div>
+                        @error ('password')
+                        <div class="alert alert-danger">password</div>
+                        @enderror
+                        <div class="form-group">
+                            <label for="">Пароль</label>
+                            <input type="password" name="password" id="password" autocomplete="current-password"
+                                   value="{{ old('password', isset($user) ? $user->password : null) }}">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox"><label for="checkbox">Показать пароль</label>
+                            </div>
+                            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                            <script>
+                                $(document).ready(function(){
+                                    $('#checkbox').on('change', function(){
+                                        $('#password').attr('type',$('#checkbox').prop('checked')==true?"text":"password");
+                                    });
+                                });
+                            </script>
+
+                            <style>
+                                .checkbox{
+                                    margin-top: 10px;
+                                }
+                                .checkbox label{
+                                    display: inline-block;
+                                }
+                            </style>
+
+                        </div>
+                        <!-- Remember Me -->
+                        {{--                        <div class="form-group">--}}
+                        {{--                            <label for="remember_me" class="inline-flex items-center">--}}
+                        {{--                                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">--}}
+                        {{--                                <span>Запомнить меня</span>--}}
+                        {{--                            </label>--}}
+                        {{--                        </div>--}}
+                        <div class="form-group">
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}">
+                                    Забыли пароль?
+                                </a>
+                            @endif
+                        </div>
+                        @csrf
+                        <button class="more">Войти</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="vantage">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 data-aos="fade-up" data-aos-duration="2000">@lang('main.vantages')</h2>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                @foreach($vantages as $vantage)
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="vantage-item" data-aos="zoom-in" data-aos-duration="2000">
-                            <img src="{{ Storage::url($vantage->image) }}" alt="">
-                            <h5>{{ $vantage->__('title') }}</h5>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="rooms">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 data-aos="fade-up" data-aos-duration="2000">@lang('main.rooms')</h2>
-                </div>
-            </div>
-            @foreach($rooms as $room)
-                @if($loop->iteration % 2)
-                    <div class="row rooms-item">
-                        <div class="col-md-6" data-aos="fade-right" data-aos-duration="2000">
-                            <a href="{{ route('room', $room->code) }}">
-                                <div class="img" style="background-image: url({{ Storage::url($room->image) }})"></div>
-                            </a>
-                        </div>
-                        <div class="col-md-6" data-aos="fade-left" data-aos-duration="2000">
-                            <h3>{{ $room->__('title') }}</h3>
-                            {!! $room->__('description') !!}
-                            <div class="btn-wrap">
-                                <a href="{{ route('room', $room->code) }}" class="more">@lang('main.more')</a>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="row rooms-item second">
-                        <div class="col-md-6 order-lg-1 order-md-1 order-2" data-aos="fade-right" data-aos-duration="2000">
-                            <div class="text-wrap">
-                                <h3>{{ $room->__('title') }}</h3>
-                                {!! $room->__('description') !!}
-                                <div class="btn-wrap">
-                                    <a href="{{ route('room', $room->code) }}" class="more">@lang('main.more')</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 order-lg-2 order-md-2 order-1" data-aos="fade-left" data-aos-duration="2000">
-                            <a href="{{ route('room', $room->code) }}">
-                                <div class="img" style="background-image: url({{ Storage::url($room->image) }})"></div>
-                            </a>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-        </div>
-    </div>
 @endsection
+
+

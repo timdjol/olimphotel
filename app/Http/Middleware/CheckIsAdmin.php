@@ -16,11 +16,12 @@ class CheckIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-        if(!$user->is_admin){
-            session()->flash('warning', 'У вас недостаточно прав администратора!');
-            return redirect()->route('index');
+        if (Auth::user()->is_admin == 1) {
+            return $next($request);
         }
-        return $next($request);
+
+        session()->flash('warning', 'У вас недостаточно прав администратора!');
+        //Auth::logout();
+        return redirect()->back();
     }
 }

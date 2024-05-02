@@ -11,7 +11,7 @@ class ImageController extends Controller
 {
     public function create(Image $image)
     {
-        return view('auth.room.form', compact('image'));
+        return view('auth.rooms.form', compact('image'));
     }
 
     public function store(Request $request, Image $image, Room $room){
@@ -19,6 +19,6 @@ class ImageController extends Controller
         $params['room_id'] = $request->room->id;
         $image = Image::create($params);
         session()->flash('success', $request->room->title . ' добавлен' );
-        return redirect()->route('room.index', $room);
+        return redirect()->route('rooms.index', $room);
     }
 }

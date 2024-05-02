@@ -61,7 +61,7 @@
                                 <td colspan="2">
                                     <ul>
                                         <li><a class="btn view" href="{{ route('contacts.edit', $contact)
-                                            }}">Редактировать</a></li>
+                                            }}"><i class="fa-regular fa-pen-to-square"></i> Редактировать</a></li>
                                     </ul>
                                 </td>
                             </tr>

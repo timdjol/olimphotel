@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use http\Env\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin'
     ];
 
     /**
@@ -48,7 +49,19 @@ class User extends Authenticatable
         return $this->is_admin === 1;
     }
 
-    public function orders(){
-        return $this->hasMany(Order::class);
+    public function isManager(){
+        return $this->is_admin === 2;
+    }
+
+    public function isBuh(){
+        return $this->is_admin === 3;
+    }
+
+    public function isHotel(){
+        return $this->is_admin === 4;
+    }
+
+    public function books(){
+        return $this->hasMany(Book::class);
     }
 }

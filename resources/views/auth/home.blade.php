@@ -39,10 +39,10 @@
                                                 <form action="{{ route('sliders.destroy', $slider) }}" method="post">
                                                     <ul>
                                                         <li><a class="btn edit" href="{{ route('sliders.edit', $slider)
-                                            }}">Редактировать</a></li>
+                                            }}"><i class="fa-regular fa-pen-to-square"></i></a></li>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn delete">Удалить</button>
+                                                        <button class="btn delete"><i class="fa-regular fa-trash"></i></button>
                                                     </ul>
                                                 </form>
                                             </td>
@@ -50,85 +50,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <a class="btn add" href="{{ route('sliders.create') }}">Добавить слайд</a>
+                                <a class="btn add" href="{{ route('sliders.create') }}"><i class="fa-solid
+                                fa-plus"></i> Добавить слайд</a>
                                 {{ $sliders->links('pagination::bootstrap-4') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="sliders">
-                                <h2>Преимущества</h2>
-                                <p>Количество: {{ $vantages->count() }}</p>
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Изображение</th>
-                                        <th>Название</th>
-                                        <th>Название EN</th>
-                                        <th>Действия</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($vantages as $vantage)
-                                        <tr>
-                                            <td><img src="{{ Storage::url($vantage->image) }}" alt="" width="100px"></td>
-                                            <td>{{ $vantage->title }}</td>
-                                            <td>{{ $vantage->title_en }}</td>
-                                            <td>
-                                                <form action="{{ route('vantages.destroy', $vantage) }}" method="post">
-                                                    <ul>
-                                                        <li><a class="btn edit" href="{{ route('vantages.edit', $slider)
-                                            }}">Редактировать</a></li>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn delete">Удалить</button>
-                                                    </ul>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <a class="btn add" href="{{ route('vantages.create') }}">Добавить</a>
-                                {{ $vantages->links('pagination::bootstrap-4') }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="faqs" style="margin-top: 40px">
-                                <h2>Вопросы-ответы</h2>
-                                <p>Количество: {{ $faqs->count() }}</p>
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Вопрос</th>
-                                        <th>Действия</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($faqs as $faq)
-                                        <tr>
-                                            <td>{{ $faq->title }}</td>
-                                            <td>
-                                                <form action="{{ route('faqs.destroy', $faq) }}" method="post">
-                                                    <ul>
-                                                        <li><a class="btn edit" href="{{ route('faqs.edit', $faq)
-                                            }}">Редактировать</a></li>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn delete">Удалить</button>
-                                                    </ul>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <a class="btn add" href="{{ route('faqs.create') }}">Добавить</a>
-                                {{ $faqs->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>
