@@ -37,15 +37,11 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="dashboard-item">
-                                <div class="name">Часовой пояс</div>
-                                <h5>+06 (UTC +6)
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                            {{--                            <div class="dashboard-item">--}}
+                            {{--                                <div class="name">Часовой пояс</div>--}}
+                            {{--                                <h5>+06 (UTC +6)--}}
+                            {{--                                </h5>--}}
+                            {{--                            </div>--}}
                             <div class="dashboard-item">
                                 <div class="name">Адрес</div>
                                 <div class="address">{{ $hotel->address }}</div>
@@ -53,6 +49,12 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-3">
+                            <div class="dashboard-item">
+                                <div class="name">ID</div>
+                                <h5>{{ $hotel->id }}</h5>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="dashboard-item">
                                 <div class="name">Количество комнат</div>
@@ -73,8 +75,76 @@
                         </div>
                         <div class="col-md-3">
                             <div class="dashboard-item">
-                                <div class="name">ID</div>
-                                <h5>{{ $hotel->id }}</h5>
+                                <div class="name">Ранний заезд</div>
+                                <h5>{{ $hotel->early_in }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-item">
+                                <div class="name">Ранний выезд</div>
+                                <h5>{{ $hotel->early_out }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-item">
+                                <div class="name">Количество доп мест</div>
+                                <h5>{{ $hotel->extra_place }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-item">
+                                <div class="name">Рейтинг</div>
+                                @if($hotel->rating == 2)
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                @elseif($hotel->rating == 3)
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                @elseif($hotel->rating == 4)
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                @else
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-item">
+                                <div class="name">Стоимость отмены</div>
+                                <h5>{{ $hotel->cancelled }}$</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-item">
+                                <div class="name">Включено</div>
+                                <h5>{{ $hotel->include }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dashboard-item">
+                                <div class="name">Наценка за доп место</div>
+                                <h5>{{ $hotel->markup }}$</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboard-item">
+                                <div class="name">Услуги</div>
+                                <h6>{{ $hotel->service->services }}</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="dashboard-item">
+                                <div class="name">Способы оплаты</div>
+                                <h6>{{ $hotel->payment->payments }}</h6>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-@extends('auth.layouts.master')
+@extends('auth.layouts.hotelhead')
 
 @section('title', 'Отели')
 
@@ -6,12 +6,6 @@
 
     <div class="page admin mainhotels">
         <div class="container">
-            @if(session()->has('success'))
-                <p class="alert alert-success">{{ session()->get('success') }}</p>
-            @endif
-            @if(session()->has('warning'))
-                <p class="alert alert-warning">{{ session()->get('warning') }}</p>
-            @endif
             <div class="row">
                 <div class="col-md-6">
                     <form action="">

@@ -27,6 +27,10 @@ class Book extends Model
         'end_d'
     ];
 
+    public function rooms(){
+        return $this->hasMany(Room::class);
+    }
+
     public function showStartDate()
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->start_d)->format('d/m/Y');

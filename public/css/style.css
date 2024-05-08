@@ -1,0 +1,9 @@
+.servlisting .item{
+    font-size: 14px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+.hotel .include {
+    color: #0163b4;
+    opacity: 1;
+}

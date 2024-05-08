@@ -24,8 +24,34 @@
         </div>
         <div class="col-lg-2 d-xl-block d-lg-block d-none" data-aos="fade-left" data-aos-duration="2000">
             <div class="price">${{ $room->price }}</div>
-            @if($room->hotel->breakfast != '')
-                <div class="breakfast">@lang('main.breakfast')</div>
+                @if($room->hotel->include == 'AI')
+                <div class="breakfast" title="All inclusive">AI</div>
+                @elseif($room->hotel->include == 'BB')
+                <div class="breakfast" title="Breakfast">BB</div>
+                @elseif($room->hotel->include == 'FB')
+                <div class="breakfast" title="Full board (breakfast, lunch and dinner)">FB</div>
+                @elseif($room->hotel->include == 'RO')
+                <div class="breakfast" title="Room only">RO</div>
+                @elseif($room->hotel->include == 'HB')
+                <div class="breakfast" title="Half Board (breakfast and lunch or dinner)">HB</div>
+                @else
+                @endif
+            @if($room->hotel->early_in != '')
+                <div class="early">@lang('main.early')</div>
+            @endif
+            @if($room->hotel->cancelled == 0 || $room->hotel->cancelled == '')
+                <div class="early">@lang('main.cancelled')</div>
             @endif
         </div>
     </div>
+
+    <style>
+        .rooms .breakfast{
+            background-color: #0163b4;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+            opacity: 1;
+        }
+    </style>

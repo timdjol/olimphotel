@@ -16,10 +16,10 @@ trait Translatable
             $fieldName = $originFieldName;
         }
 
-        $attributes = array_keys($this->attributes);
-        if(!in_array($fieldName, $attributes)){
-            throw new \LogicException('No such attribute for model ' . get_class($this));
-        }
+        //$attributes = array_keys($this->attributes);
+//        if(!in_array($fieldName, $attributes)){
+//            throw new \LogicException('No such attribute for model ' . get_class($this));
+//        }
 
         if($locale === 'en' && (is_null($this->$fieldName) || empty($this->$fieldName))){
             return $this->$originFieldName;

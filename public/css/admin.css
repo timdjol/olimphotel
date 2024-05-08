@@ -4,19 +4,6 @@
 header{
     padding: 0;
 }
-/*.head{*/
-/*    background-color: var(--blue);*/
-/*    padding: 10px 0;*/
-/*}*/
-/*.head nav{*/
-/*    text-align: center;*/
-/*}*/
-/*.head ul li a{*/
-/*    color: #fff;*/
-/*}*/
-/*.head nav li{*/
-/*    color: #fff;*/
-/*}*/
 .admin table ul {
     margin-bottom: 0;
     padding-left: 0;
@@ -124,4 +111,27 @@ header{
 }
 .icons .icon5:before {
     background-color: var(--blue);
+}
+.admin .modal-content .print, .admin .modal-content .download{
+    display: inline-block;
+    margin-right: 40px;
+}
+.admin .modal-content .print a, .admin .modal-content .download a{
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.admin .modal-content .img{
+    display: inline-block;
+}
+.admin .modal-content{
+    margin-top: 0;
+}
+.admin .modal-content .img img{
+    max-width: 200px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+.admin .modal-content .status .fa-regular{
+    color: green;
 }

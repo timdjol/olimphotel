@@ -21,10 +21,10 @@ class DashboardController extends Controller
         $hotels = Hotel::get();
         $rooms = Room::get();
         $users = Auth::user();
-        $pages = Page::get();
+        //$pages = Page::get();
 
         return view('auth.dashboard',
-            compact('users', 'rooms', 'pages', 'books', 'hotels'));
+            compact('users', 'rooms','books', 'hotels'));
     }
 
 }

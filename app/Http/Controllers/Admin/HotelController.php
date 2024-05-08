@@ -18,7 +18,6 @@ class HotelController extends Controller
     public function index()
     {
         $hotels = Hotel::paginate(10);
-
         return view('auth.hotels.index', compact('hotels'));
     }
 
@@ -44,7 +43,7 @@ class HotelController extends Controller
         }
         Hotel::create($params);
 
-        session()->flash('success', 'Отель ' . $request->title . ' добавлен');
+        session()->flash('success', $request->title . ' добавлен');
         return redirect()->route('hotels.index');
     }
 
@@ -82,7 +81,7 @@ class HotelController extends Controller
 
         $hotel->update($params);
 
-        session()->flash('success', 'Отель ' . $request->title . ' обновлен');
+        session()->flash('success', $request->title . ' обновлен');
         return redirect()->route('hotels.index');
     }
 

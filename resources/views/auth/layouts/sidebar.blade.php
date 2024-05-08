@@ -8,8 +8,8 @@
             <li @routeactive('payments.index')>
             <a href="{{ route('payments.index')}}"><i class="fa-regular fa-money-bill"></i> Способы оплаты</a>
             </li>
-            <li @routeactive('policies.index')><a href="{{ route('policies.index')}}"><i class="fa-regular fa-key"></i>
-            Политика</a></li>
+{{--            <li @routeactive('policies.index')><a href="{{ route('policies.index')}}"><i class="fa-regular fa-key"></i>--}}
+{{--            Политика</a></li>--}}
 {{--            <li @routeactive('reviews.index')><a href="{{ route('reviews.index')}}"><i class="fa-light fa-message"></i>--}}
 {{--            Отзывы</a></li>--}}
         @endadmin

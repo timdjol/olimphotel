@@ -46,20 +46,48 @@ class MainController extends Controller
     }
 
 
-    public function search()
+    public function search(Request $request)
     {
-        $title = $_GET['search'];
-        $start_d = $_GET['start_d'];
-        $end_d = $_GET['end_d'];
-        $hotel = Hotel::query()
-            ->where('title', 'like', '%'.$title.'%')
-            ->orWhere('title_en', 'like', '%'.$title.'%')
-            ->orWhere('address', 'like', '%'.$title.'%')
-            ->orWhere('checkin', 'like', '%'.$title.'%')
-            ->firstOrFail();
-        $min = Room::whereNotNull('price')->min("price");
-        $rooms = Room::where('hotel_id', $hotel->id)->paginate(10);
-        return view('search', compact('hotel', 'rooms', 'start_d', 'end_d', 'min'));
+        //$title = $_GET['search'];
+//        $start_d = $_GET['start_d'];
+//        $end_d = $_GET['end_d'];
+        $query = Hotel::query();
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%'.$request->title.'%');
+            $query->orWhere('title_en', 'like', '%'.$request->title.'%');
+            $query->orWhere('address', 'like', '%'.$request->title.'%');
+            $query->orWhere('address_en', 'like', '%'.$request->title.'%');
+        }
+        if ($request->filled('rating')) {
+            $query->where('rating', $request->rating);
+
+        }
+        if ($request->filled('include')) {
+            $query->where('include', $request->include);
+        }
+        if ($request->filled('early_in')) {
+            $query->where('early_in', '!=', '');
+        }
+
+        if ($request->filled('cancelled')) {
+            $query->where('cancelled', '==', 0);
+            $query->orWhere('cancelled', '==', '');
+            $query->orWhere('cancelled', '==', null);
+        }
+
+        if ($request->filled('extra_place')) {
+            $query->where('extra_place', '!=', '');
+            $query->orWhere('extra_place', '!=', null);
+            $query->orWhere('extra_place', '!=', 0);
+        }
+        $hotels = $query->get();
+
+//        if ($request->filled('daterange')) {
+//            $query->whereBetween('price',[$request->left_value, $request->right_value]);
+//        }
+
+
+        return view('search', compact('hotels'));
     }
 
 }

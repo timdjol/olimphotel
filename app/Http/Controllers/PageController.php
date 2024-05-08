@@ -17,6 +17,11 @@ class PageController extends Controller
     public function homepage()
     {
         $rooms = Room::paginate(10);
+        $roomQuery = Room::get();
+
+        //dd($roomQuery->hotel());
+        //$h = $roomQuery->where('title', 'like', '%orion%')->with('hotels')->get();
+        //dd($h);
         return view('pages.home', compact('rooms' ));
     }
     public function hotels()
@@ -28,7 +33,7 @@ class PageController extends Controller
     public function hotel($code)
     {
         $hotel = Hotel::where('code', $code)->first();
-        $rooms = Room::paginate(10);
+        $rooms = Room::where('hotel_id', $hotel->id)->paginate(10);
         return view('pages.hotel', compact('hotel', 'rooms'));
     }
 

@@ -9,16 +9,27 @@ class Hotel extends Model
 {
     use Translatable;
 
-    protected $fillable = ['code', 'title', 'title_en', 'description', 'description_en', 'image','checkin', 'checkout',
-        'breakfast', 'phone', 'email', 'count', 'type', 'address', 'address_en', 'lng', 'lat', 'status'];
+    protected $fillable = ['code', 'title', 'title_en', 'description', 'description_en', 'image', 'checkin', 'checkout',
+        'include', 'phone', 'email', 'count', 'type', 'address', 'address_en', 'lng', 'lat', 'status', 'early_in', 'early_out', 'rating', 'markup', 'extra_place', 'cancelled'];
 
     public function rooms(){
-        return $this->hasMany(Room::class);
+        return $this->hasMany(Room::class, 'id', 'room_id');
+    }
+
+    public function policy(){
+        return $this->hasOne(Policy::class);
+    }
+
+    public function service(){
+        return $this->hasOne(Service::class);
+    }
+
+    public function payment(){
+        return $this->hasOne(Payment::class);
     }
 
     public function scopeByCode($query, $code){
         return $query->where('code', $code);
     }
-
 
 }

@@ -40,6 +40,7 @@
                 </div>
                 <div class="col-md-6" data-aos="fade-left" data-aos-duration="2000">
                     <h1>{{ $room->__('title') }}</h1>
+                    <h5>{{ $room->hotel->__('title') }}</h5>
                     <div class="price">@lang('main.price') ${{$room->price }}</div>
                     <div class="btn-wrap">
                         <a href="{{ route('books.index', $room->id) }}" class="more">@lang('main.book')</a>
@@ -54,8 +55,53 @@
                         @endif
                     </div>
                     {!! $room->__('description') !!}
-                    <div class="servlisting">
+                    <div class="list">
+                        <p><i class="fa-light fa-mug-saucer"></i> {{$room->hotel->include}}</p>
+                        @if($room->hotel->early_in != '')
+                            <p><i class="fa-light fa-calendar-days"></i> @lang('main.early')
+                                {{$room->hotel->early_in}}</p>
+                        @endif
+                        @if($room->hotel->early_out != '')
+                            <p><i class="fa-light fa-calendar-days"></i> @lang('main.early_out')
+                                {{$room->hotel->early_out}}</p>
+                        @endif
+                        @if($room->hotel->cancelled == 0 || $room->hotel->cancelled == '')
+                            <p><i class="fa-regular fa-money-bill"></i> @lang('main.cancelled')</p>
+                        @else
+                            <p><i class="fa-regular fa-money-bill"></i> @lang('main.cancelled-price') {{
+                            $room->hotel->cancelled }}$
+                        @endif
 
+                    </div>
+                    <div class="servlisting">
+                        <h5>@lang('main.services'):</h5>
+                       <div class="row">
+                           @php
+                               $services = explode(', ', $room->hotel->service->services);
+                           @endphp
+                           @foreach($services as $service)
+                               <div class="col-md-4">
+                                   <div class="item">
+                                       <i class="fa-regular fa-check"></i> {{ $service }}
+                                   </div>
+                               </div>
+                           @endforeach
+                       </div>
+                    </div>
+                    <div class="servlisting">
+                        <h5>@lang('main.payments'):</h5>
+                        <div class="row">
+                            @php
+                                $pays = explode(', ', $room->hotel->payment->payments);
+                            @endphp
+                            @foreach($pays as $pay)
+                                <div class="col-md-3">
+                                    <div class="item">
+                                        <i class="fa-light fa-credit-card"></i> {{ $pay }}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="share">
                         <div class="descr">@lang('main.share')</div>

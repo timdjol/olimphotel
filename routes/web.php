@@ -102,12 +102,10 @@ Route::middleware('set_locale')->group(function ()
     Route::post('hotel_mail', [MainController::class, 'hotel_mail'])->name('hotel_mail');
     Route::get('/search', [MainController::class, 'search'])->name('search');
 
-    Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
+    Route::get('generate-pdf/{id}', [PDFController::class, 'generatePDF'])->name('pdf');
 
     Route::get('/{hotel}', [PageController::class, 'hotel'])->name('hotel');
     Route::get('/{hotel}/{rooms}', [PageController::class, 'room'])->name('room');
-
-
 
 
 });

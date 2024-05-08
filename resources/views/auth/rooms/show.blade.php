@@ -7,11 +7,11 @@
     <div class="page admin">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    @include('auth.layouts.sidebar')
-                </div>
+{{--                <div class="col-md-3">--}}
+{{--                    @include('auth.layouts.sidebar')--}}
+{{--                </div>--}}
                 <div class="col-md-9">
-                    <h1>Вид тура {{ $room->title }}</h1>
+                    <h1>{{ $room->title }}</h1>
                     <table class="table">
                         <tr>
                             <td>ID</td>

@@ -41,7 +41,7 @@ class RoomController extends Controller
 
         $rooms = Room::query();
 
-        $hotel = $request->session()->get('hotel_id');
+
 
         if ($s_query !== null || isset($status) || $show_result) {
             $rooms = $rooms->where(function($query) use ($status, $s_query) {
@@ -55,6 +55,7 @@ class RoomController extends Controller
                 }
             });
         }
+        $hotel = $request->session()->get('hotel_id');
         $rooms = $rooms->where('hotel_id', $hotel)->paginate(intval($show_result));
 
         return view('auth.rooms.index', compact('rooms', 'status','show_result', 's_query'));

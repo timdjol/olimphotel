@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Book;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class PDFController extends Controller
 {
-    public function generatePDF()
+    public function generatePDF($id)
     {
-        $users = User::get();
-
+        $book = Book::where('id', $id)->first();
+        $date = date('d/m/Y H:i');
         $data = [
-            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
-            'date' => date('m/d/Y'),
-            'users' => $users
+            'title' => 'StayBook',
+            'date' => date('d/m/Y H:i'),
+            'book' => $book
         ];
-
-        $pdf = PDF::loadView('pdf.users', $data);
-        return $pdf->download('users-lists.pdf');
+        $pdf = PDF::loadView('pdf.book', $data);
+        return $pdf->download('book_'. $book->id .'_'.$date.'.pdf');
     }
 }
