@@ -51,11 +51,15 @@
                 </form>
             </div>
             <div class="col-md-3">
-                <div class="status active"><i class="fa-solid fa-circle"></i> Активно</div>
+                @if($hotel->status == 1)
+                <div class="status active"><i class="fa-solid fa-circle"></i> Active</div>
+                    @else
+                    <div class="status"><i class="fa-solid fa-circle"></i> Disable</div>
+                @endif
             </div>
             <div class="col-md-3">
                 <div class="homelink">
-                    <a href="{{route('homepage')}}" target="_blank"><i class="fas fa-house"></i> Перейти на сайт</a></a>
+                    <a href="{{route('homepage')}}" target="_blank"><i class="fas fa-house"></i> Visit site</a></a>
                 </div>
             </div>
         </div>
@@ -67,21 +71,21 @@
                     <nav>
                         <ul>
                             <li @routeactive('hotels.index')><a href="{{route('hotels.index')}}"><i class="fas
-                            fa-hotel"></i> Отели</a></li>
+                            fa-hotel"></i> Hotels</a></li>
                             <li @routeactive('bookings.index')><a href="{{route('bookings.index')}}"><i
                                         class="fa-regular
-                            fa-tag"></i> Цены и наличие</a></li>
+                            fa-tag"></i> Rates and availability</a></li>
                             <li @routeactive('listbooks.index')><a href="{{route('listbooks.index')}}"><i
-                                        class="fa-regular fa-tag"></i> Брони</a></li>
+                                        class="fa-regular fa-tag"></i> Bookings</a></li>
                             <li @routeactive('rooms.index')><a href="{{route('rooms.index')}}"><i class="fas
-                            fa-booth-curtain"></i> Номера</a></li>
-                            <li><a href="{{route('bills.index')}}"><i class="fa-thin fa-money-bills"></i> Счета</a></li>
+                            fa-booth-curtain"></i> Rooms</a></li>
+                            <li><a href="{{route('bills.index')}}"><i class="fa-thin fa-money-bills"></i> Bills</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-md-4 person">
-                    <a href="{{route('profile.edit')}}"><i class="fa-regular fa-address-card"></i> Профиль</a>
-                    <a href="{{route('logout')}}" class="delete"><i class="fa-regular fa-door-open"></i> Выйти</a>
+                    <a href="{{route('profile.edit')}}"><i class="fa-regular fa-address-card"></i> Profile</a>
+                    <a href="{{route('logout')}}" class="delete"><i class="fa-regular fa-door-open"></i> Logout</a>
                 </div>
             </div>
         </div>
@@ -102,17 +106,31 @@
 </div>
 @yield('content')
 
-{{--<footer>--}}
-{{--    <div class="copy">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12">--}}
-{{--                    <p>@lang('main.copy') &copy; {{ date('Y') }} StayBook</p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</footer>--}}
+<footer>
+    <div class="bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <li @routeactive('pages.index')><a href="{{ route('pages.index')}}"><i class="fas
+            fa-page"></i> Pages</a></li>
+                        <li @routeactive('contacts.index')><a href="{{ route('contacts.index')}}"><i class="fas
+            fa-address-book"></i> Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>All rights reserved &copy; {{ date('Y') }} StayBook</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>

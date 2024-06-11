@@ -1,6 +1,6 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Счета')
+@section('title', 'Bills')
 
 @section('content')
 
@@ -11,16 +11,16 @@
                     @include('auth.layouts.sidebar')
                 </div>
                 <div class="col-md-9">
-                    <h1>Соглашение</h1>
+                    <h1>Agreements</h1>
                     @if(!$bills->isEmpty())
                     <table>
                         <tr>
-                            <th>№</th>
-                            <th>Дата заключения</th>
-                            <th>Статус</th>
-                            <th>Компания</th>
-                            <th>Файлы</th>
-                            <th>Действия</th>
+                            <th>#</th>
+                            <th>Signed on</th>
+                            <th>Status</th>
+                            <th>Company</th>
+                            <th>Files</th>
+{{--                            <th>Действия</th>--}}
                         </tr>
                         <tbody>
                         @foreach($bills as $bill)
@@ -44,17 +44,17 @@
                                             Rules and
                                             Procedures</a></div>
                                 </td>
-                                <td>
-                                    <form action="{{ route('bills.destroy', $bill) }}" method="post">
-                                        <ul>
-                                            <li><a class="btn edit" href="{{ route('bills.edit', $bill)
-                                            }}"><i class="fa-regular fa-pen-to-square"></i></a></li>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn delete"><i class="fa-regular fa-trash"></i></button>
-                                        </ul>
-                                    </form>
-                                </td>
+{{--                                <td>--}}
+{{--                                    <form action="{{ route('bills.destroy', $bill) }}" method="post">--}}
+{{--                                        <ul>--}}
+{{--                                            <li><a class="btn edit" href="{{ route('bills.edit', $bill)--}}
+{{--                                            }}"><i class="fa-regular fa-pen-to-square"></i></a></li>--}}
+{{--                                            @csrf--}}
+{{--                                            @method('DELETE')--}}
+{{--                                            <button class="btn delete"><i class="fa-regular fa-trash"></i></button>--}}
+{{--                                        </ul>--}}
+{{--                                    </form>--}}
+{{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>

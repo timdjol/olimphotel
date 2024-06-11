@@ -1,6 +1,6 @@
 @extends('auth.layouts.master', compact('hotel'))
 
-@section('title', 'Удобства и услуги')
+@section('title', 'Services and Facilities')
 
 @section('content')
 
@@ -12,12 +12,12 @@
                     @include('auth.layouts.sidebar')
                 </div>
                 <div class="col-md-9">
-                    <h1>Удобства и услуги</h1>
+                    <h1>Services and Facilities</h1>
                     @if(!$services->isEmpty())
                     <table>
                         <tr>
-                            <th>Услуги</th>
-                            <th>Действия</th>
+                            <th>Services</th>
+                            <th>Action</th>
                         </tr>
                         @foreach($services as $service)
 
@@ -30,7 +30,7 @@
                     </table>
                     @else
                         <div class="btn-wrap" style="margin-top: 20px">
-                            <a href="{{ route('services.create') }}" class="more">Добавить</a>
+                            <a href="{{ route('services.create') }}" class="more">Add</a>
                         </div>
                     @endif
                 </div>

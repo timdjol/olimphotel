@@ -35,7 +35,7 @@
 
                             DG.marker([42.876510, 74.581205], { scrollWheelZoom: false })
                                 .addTo(map)
-                                .bindLabel('SilkWayTravel', {
+                                .bindLabel('StayBook', {
                                     static: true
                                 });
                         });

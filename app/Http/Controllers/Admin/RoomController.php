@@ -78,6 +78,12 @@ class RoomController extends Controller
     {
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
+
+        unset($params['services']);
+        if($request->has('services')){
+            $params['services'] = implode(', ', $request->services);
+        }
+
         unset($params['image']);
         if($request->has('image')){
             $path = $request->file('image')->store('rooms');
@@ -118,8 +124,9 @@ class RoomController extends Controller
     {
         $hotel = $request->session()->get('hotel_id');
         $hotels = Hotel::all();
+        $services = explode(', ', $room->services);
         $images = Image::where('room_id', $room->id)->get();
-        return view('auth.rooms.form', compact('room', 'hotels', 'images', 'hotel'));
+        return view('auth.rooms.form', compact('room', 'hotels', 'images', 'hotel', 'services'));
     }
 
     /**
@@ -129,16 +136,23 @@ class RoomController extends Controller
     {
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
-        unset($params['image']);
 
-        ///image
+        // services
+        unset($params['services']);
+        if($request->has('services')){
+            $params['services'] = implode(', ', $request->services);
+        }
+
+        // image
+        unset($params['image']);
         if ($request->has('image')) {
             Storage::delete($room->image);
             $params['image'] = $request->file('image')->store('rooms');
         }
-        unset($params['images']);
+
 
         //images
+        unset($params['images']);
         $images = $request->file('images');
         if ($request->hasFile('images')) {
             $dimages = Image::where('room_id', $room->id)->get();

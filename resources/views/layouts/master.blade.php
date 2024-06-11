@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -28,6 +29,7 @@
 
 
     <script src="{{route('index')}}/js/scripts.min.js"></script>
+
 
 </head>
 

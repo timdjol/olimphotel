@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactMail;
 use App\Mail\HotelMail;
 use App\Models\Book;
-use App\Models\Hotel;
+use App\Models\Contact;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -42,32 +42,49 @@ class MainController extends Controller
         Book::create($params);
         Mail::to('info@timmedia.store')->send(new HotelMail($request));
         session()->flash('success', 'Бронь ' . $request->name . ' оформлена');
-        return redirect()->route('index');
+        return redirect()->route('homepage');
     }
 
 
     public function search(Request $request)
     {
-        //$title = $_GET['search'];
-//        $start_d = $_GET['start_d'];
-//        $end_d = $_GET['end_d'];
-        $query = Hotel::query();
-        if ($request->filled('title')) {
-            $query->where('title', 'like', '%'.$request->title.'%');
-            $query->orWhere('title_en', 'like', '%'.$request->title.'%');
-            $query->orWhere('address', 'like', '%'.$request->title.'%');
-            $query->orWhere('address_en', 'like', '%'.$request->title.'%');
-        }
-        if ($request->filled('rating')) {
-            $query->where('rating', $request->rating);
 
+        $query = Room::with('hotel');
+
+        if ($request->filled('title')) {
+            $title = (array) $request->input('title');
+            $query->whereHas('hotel', function ($quer) use ($title) {
+                $quer->where('title', $title);
+                $quer->orWhere('title_en', $title);
+                $quer->orWhere('address', $title);
+                $quer->orWhere('address_en', $title);
+            });
         }
+
+        if ($request->filled('rating')) {
+            $rating = (array) $request->input('rating');
+            $query->whereHas('hotel', function ($quer) use ($rating) {
+                $quer->where('rating', $rating);
+            });
+        }
+
         if ($request->filled('include')) {
             $query->where('include', $request->include);
         }
+
         if ($request->filled('early_in')) {
-            $query->where('early_in', '!=', '');
+            $early_in = (array) $request->input('early_in');
+            $query->whereHas('hotel', function ($quer) use ($early_in) {
+                $quer->where('early_in', $early_in);
+            });
         }
+        if ($request->filled('early_out')) {
+            $early_out = (array) $request->input('early_out');
+            $query->whereHas('hotel', function ($quer) use ($early_out) {
+                $quer->where('early_out', $early_out);
+            });
+        }
+
 
         if ($request->filled('cancelled')) {
             $query->where('cancelled', '==', 0);
@@ -80,14 +97,24 @@ class MainController extends Controller
             $query->orWhere('extra_place', '!=', null);
             $query->orWhere('extra_place', '!=', 0);
         }
-        $hotels = $query->get();
+        $rooms = $query->get();
+
+        $start_d = $request->start_d;
+        $end_d = $request->end_d;
+        $count = $request->count;
+        $countc = $request->countc;
+        $age1 = $request->age1;
+        $age2 = $request->age2;
+        $age3 = $request->age3;
+
+        $contacts = Contact::get();
 
 //        if ($request->filled('daterange')) {
 //            $query->whereBetween('price',[$request->left_value, $request->right_value]);
 //        }
 
 
-        return view('search', compact('hotels'));
+        return view('search', compact('rooms', 'contacts', 'start_d', 'end_d', 'count', 'countc', 'age1', 'age2', 'age3'));
     }
 
 }

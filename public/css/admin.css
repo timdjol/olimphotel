@@ -135,3 +135,18 @@ header{
 .admin .modal-content .status .fa-regular{
     color: green;
 }
+.bottom ul{
+    text-align: center;
+    padding-left: 0;
+}
+.bottom ul li{
+    display: inline-block;
+    margin: 0 10px;
+}
+.bottom ul li a{
+    color: #333;
+    text-decoration: none;
+}
+.bottom ul li a i{
+    color: var(--blue);
+}

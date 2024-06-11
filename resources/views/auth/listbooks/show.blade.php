@@ -8,13 +8,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 modal-content">
-                    <h1>Бронь #{{ $book->id }}</h1>
+                    <h1>Booking #{{ $book->id }}</h1>
                     <div class="print">
                         <a href="javascript:window.print();"><i class="fa-regular fa-print"></i>
-                            Печать</a>
+                            Print</a>
                     </div>
                     <div class="download">
-                        <a href="{{ route('pdf', $book->id) }}"><i class="fa-regular fa-download"></i> Скачать</a>
+                        <a href="{{ route('pdf', $book->id) }}"><i class="fa-regular fa-download"></i> Download</a>
                     </div>
                     <div class="row wrap">
                         <div class="col-md-6">
@@ -25,22 +25,26 @@
                         </div>
                         <div class="col-md-6">
                             <div class="dashboard-item">
-                                <div class="name">ФИО</div>
-                                {{ $book->title }}
+                                <div class="name">Guests</div>
+                                {{ $book->title }}<br>
+                                {{ $book->title2 }}<br>
+                                {{ $book->titlec1 }} - ({{$book->age1}})<br>
+                                {{ $book->titlec2 }} - ({{$book->age2}})<br>
+                                {{ $book->titlec3 }} - ({{$book->age3}})
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="dashboard-item">
-                                <div class="name">Кол-во</div>
-                                <div>{{ $book->count }} взрос.</div>
+                                <div class="name">Count</div>
+                                <div>{{ $book->count }} adult</div>
                                 @if($book->countc > 0)
-                                    <div>{{ $book->countc }} дет.</div>
+                                    <div>{{ $book->countc }} child</div>
                                 @endif
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="dashboard-item">
-                                <div class="name">Дата заезда/выезда</div>
+                                <div class="name">Date of stay</div>
                                 {{ $book->showStartDate() }} - {{ $book->showEndDate() }}
                             </div>
                         </div>
@@ -55,21 +59,21 @@
                         </div>
                         <div class="col-md-4">
                             <div class="dashboard-item">
-                                <div class="name">Отель</div>
+                                <div class="name">Hotel</div>
                                 <div class="wrap">
                                     <h5>{{ $room->hotel->title }}</h5>
-                                    <div class="name" style="margin-top: 20px">Номер</div>
-                                    <div class="title">{{ $room->title }}</div>
+                                    <div class="name" style="margin-top: 20px">Room</div>
+                                    <h5>{{ $room->title }}</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="dashboard-item">
-                                <div class="name">Стоимость</div>
+                                <div class="name">Price</div>
                                 {{ $book->sum }}
-                                <div class="name" style="margin-top: 20px">Статус</div>
+                                <div class="name" style="margin-top: 20px">Status</div>
                                 <div class="status"><i class="fa-regular fa-money-bill"></i>
-                                    Оплачено
+                                    Paid
                                 </div>
                             </div>
                         </div>

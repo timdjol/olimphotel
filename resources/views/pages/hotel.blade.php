@@ -8,7 +8,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-12">
-                    <img src="{{ Storage::url($hotel->image) }}" alt="">
+                    <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" data-loop="true" data-autoplay="3000">
+                        <img src="{{ Storage::url($hotel->image) }}" alt="">
+                        @php
+                            $images = \App\Models\Image::where('hotel_id', $hotel->id)->get();
+                        @endphp
+                        @isset($images)
+                            @foreach($images as $image)
+                                <img loading="lazy" src="{{ Storage::url($image->image) }}" alt="">
+                            @endforeach
+                        @endisset
+                    </div>
                 </div>
                 <div class="col-lg-7 col-md-12">
                     <h1>{{$hotel->__('title')}}</h1>

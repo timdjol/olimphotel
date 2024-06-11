@@ -7,16 +7,7 @@
     <div class="page admin">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    @include('auth.layouts.sidebar')
-                </div>
                 <div class="col-md-9">
-                    @if(session()->has('success'))
-                        <p class="alert alert-success">{{ session()->get('success') }}</p>
-                    @endif
-                    @if(session()->has('warning'))
-                        <p class="alert alert-warning">{{ session()->get('warning') }}</p>
-                    @endif
                     <div class="row">
                         <div class="col-md-7">
                             <h1>Контакты</h1>

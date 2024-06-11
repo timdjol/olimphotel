@@ -1,6 +1,6 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Номера')
+@section('title', 'Rooms')
 
 @section('content')
 
@@ -10,34 +10,34 @@
                 <div class="col-md-12">
                     <div class="row align-items-center aic">
                         <div class="col-md-7">
-                            <h1>Номера</h1>
+                            <h1>Rooms</h1>
                         </div>
                         <div class="col-md-5">
                             <div class="btn-wrap">
                                 <a class="btn add" href="{{ route('rooms.create') }}"><i class="fa-solid
-                                fa-plus"></i> Добавить</a>
+                                fa-plus"></i> Add</a>
                             </div>
                         </div>
                     </div>
                     <form class="row">
                         <div class="col px-1">
-                            <label for="">Статус</label>
+                            <label for="">Status</label>
                             <select class="form-control w-100" id="ch_status">
                                 <option value="" {{ $status === null ? 'selected' : '' }}>
-                                    Выбрать
+                                    Choose
                                 </option>
                                 <option value="1" {{ $status === '1' ? 'selected' : '' }}>
-                                    Включено
+                                    Active
                                 </option>
                                 <option value="0" {{ $status === '0' ? 'selected' : '' }}>
-                                    Отключено
+                                    Disable
                                 </option>
                             </select>
                         </div>
                         <div class="col px-1">
-                            <label for="">Показать количество</label>
+                            <label for="">Show count</label>
                             <select class="form-control w-100" id="show_item_at_once">
-                                <option value="0">Выбрать</option>
+                                <option value="0">Choose</option>
                                 <option value="10" {{ $show_result == 10 ? 'selected' : '' }}>
                                     10
                                 </option>
@@ -58,19 +58,19 @@
                                 </option>
                                 <option value="all"
                                         {{ $show_result == 'all' ? 'selected' : '' }}>
-                                    Показать все
+                                    Show all
                                 </option>
                             </select>
                         </div>
                         <div class="col px-1">
-                            <label for="">Поиск</label>
-                            <input type="search" class="form-control w-100" placeholder="Поиск..."
+                            <label for="">Search</label>
+                            <input type="search" class="form-control w-100" placeholder="Search..."
                                    name="s_query" id="s_query" value="{{ $s_query ?? '' }}">
                         </div>
                         <div class="col ps-1">
                             <label for=""></label>
                             <button class="btn btn-primary w-100 more apply" type="button"
-                                    id="filter_btn">Применить
+                                    id="filter_btn">Apply
                             </button>
                         </div>
                         <style>
@@ -91,11 +91,13 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Изображение</th>
-                            <th>Название</th>
-                            <th>Отель</th>
-                            <th>Цена</th>
-                            <th>Действия</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Nutrition</th>
+                            <th>Price(adult)</th>
+                            <th>Price(child)</th>
+                            <th>Number of additional places</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,8 +105,14 @@
                             <tr>
                                 <td><img src="{{ Storage::url($room->image) }}" alt="" width="100px"></td>
                                 <td>{{ $room->title }}</td>
-                                <td>{{ $room->hotel->title }}</td>
+                                <td>{{ $room->include }}</td>
                                 <td>${{ $room->price }}</td>
+                                <td>
+                                    @if($room->pricec != '')
+                                        ${{ $room->pricec }}
+                                    @endif
+                                </td>
+                                <td>{{ $room->extra_place }}</td>
                                 <td>
                                     <form action="{{ route('rooms.destroy', $room) }}" method="post">
                                         <ul>

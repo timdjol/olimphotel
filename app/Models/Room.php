@@ -11,13 +11,35 @@ class Room extends Model
     use Translatable;
     use SoftDeletes;
 
-    protected $fillable = ['code', 'title', 'title_en', 'description', 'description_en', 'price', 'image', 'hotel_id', 'count', 'pricec', 'status'];
+    protected $fillable = [
+        'code',
+        'title',
+        'title_en',
+        'description',
+        'description_en',
+        'price',
+        'image',
+        'hotel_id',
+        'count',
+        'pricec',
+        'status',
+        'include',
+        'markup',
+        'extra_place',
+        'cancelled',
+        'bed',
+        'cancel_day',
+        'area',
+        'services',
+    ];
 
-    public function hotel(){
+    public function hotel()
+    {
         return $this->belongsTo(Hotel::class);
     }
 
-    public function book(){
+    public function book()
+    {
         return $this->belongsTo(Book::class);
     }
 
@@ -31,7 +53,8 @@ class Room extends Model
         return $this->belongsToMany(Image::class, 'images');
     }
 
-    public function scopeByCode($query, $code){
+    public function scopeByCode($query, $code)
+    {
         return $query->where('code', $code);
     }
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HotelRequest;
 use App\Models\Hotel;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -41,7 +43,20 @@ class HotelController extends Controller
             $path = $request->file('image')->store('hotels');
             $params['image'] = $path;
         }
-        Hotel::create($params);
+        $hotel = Hotel::create($params);
+
+        $images = $request->file('images');
+        if ($request->hasFile('images')) :
+            foreach ($images as $image):
+                $image = $image->store('hotels');
+                DB::table('images')->insert(
+                    array(
+                        'image'=>  $image,
+                        'hotel_id' => $hotel->id,
+                    )
+                );
+            endforeach;
+        endif;
 
         session()->flash('success', $request->title . ' добавлен');
         return redirect()->route('hotels.index');
@@ -53,9 +68,10 @@ class HotelController extends Controller
     public function show(Request $request, Hotel $hotel)
     {
         $users = Auth::user();
+        $images = Image::where('hotel_id', $hotel->id)->get();
         $request->session()->put('hotel_id', $hotel->id);
 
-        return view('auth.hotels.show', compact('hotel', 'users'));
+        return view('auth.hotels.show', compact('hotel', 'users', 'images'));
     }
 
     /**
@@ -63,7 +79,8 @@ class HotelController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        return view('auth.hotels.form', compact('hotel'));
+        $images = Image::where('hotel_id', $hotel->id)->get();
+        return view('auth.hotels.form', compact('hotel', 'images'));
     }
 
     /**
@@ -77,6 +94,26 @@ class HotelController extends Controller
         if ($request->has('image')) {
             Storage::delete($hotel->image);
             $params['image'] = $request->file('image')->store('hotels');
+        }
+
+
+        //images
+        unset($params['images']);
+        $images = $request->file('images');
+        if ($request->hasFile('images')) {
+            $dimages = Image::where('hotel_id', $hotel->id)->get();
+            if ($dimages != null) {
+                foreach ($dimages as $image){
+                    Storage::delete($image->image);
+                }
+                DB::table('images')->where('hotel_id', $hotel->id)->delete();
+            }
+            foreach ($images as $image):
+                $image = $image->store('hotels');
+                DB::table('images')
+                    ->where('hotel_id', $hotel->id)
+                    ->updateOrInsert(['hotel_id' => $hotel->id, 'image' => $image]);
+            endforeach;
         }
 
         $hotel->update($params);

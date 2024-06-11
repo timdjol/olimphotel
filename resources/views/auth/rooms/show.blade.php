@@ -1,6 +1,6 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Номер ' . $room->title)
+@section('title', 'Room ' . $room->title)
 
 @section('content')
 
@@ -18,31 +18,31 @@
                             <td>{{ $room->id }}</td>
                         </tr>
                         <tr>
-                            <td>Отель</td>
+                            <td>Hotel</td>
                             <td>{{ $room->hotel->title }}</td>
                         </tr>
                         <tr>
-                            <td>Название</td>
+                            <td>Title</td>
                             <td>{{ $room->title }}</td>
                         </tr>
                         <tr>
-                            <td>Название EN</td>
+                            <td>Title EN</td>
                             <td>{{ $room->title_en }}</td>
                         </tr>
                         <tr>
-                            <td>Описание</td>
+                            <td>Description</td>
                             <td>{!! $room->description !!}</td>
                         </tr>
                         <tr>
-                            <td>Описание EN</td>
+                            <td>Description EN</td>
                             <td>{!! $room->description_en  !!}</td>
                         </tr>
                         <tr>
-                            <td>Изображение</td>
+                            <td>Image</td>
                             <td><img src="{{ Storage::url($room->image) }}"></td>
                         </tr>
                         <tr>
-                            <td>Изображения</td>
+                            <td>Images</td>
                             <td>
                                 @foreach($images as $image)
                                     <img src="{{ Storage::url($image->image) }}">

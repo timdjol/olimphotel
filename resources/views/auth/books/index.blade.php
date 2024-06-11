@@ -7,16 +7,17 @@
     <div class="page admin">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="sidebar">
-                        <ul>
-                            @foreach($rooms as $room)
-                                <li><a href="">{{ $room->title }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-9">
+{{--                <div class="col-md-3">--}}
+{{--                    <div class="sidebar">--}}
+{{--                        <h3>Номера</h3>--}}
+{{--                        <ul>--}}
+{{--                            @foreach($rooms as $room)--}}
+{{--                                <li><a href="">{{ $room->title }}</a></li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <div class="col-md-12">
                     <div id='calendar'></div>
                     <div class="modal fade" tabindex="-1" role="dialog" id="show_modal">
                         <div class="modal-dialog" role="document">
@@ -78,21 +79,16 @@
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                         <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-xs-4" for="countс">Кол-во детей</label>
-                                                    <select name="countc" id="countc" required>
+                                                    <label class="col-xs-4" for="extra_place">Кол-во детей</label>
+                                                    <select name="extra_place" id="extra_Place" required>
                                                         <option value="0">Выбрать</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
-                                                        <option value="4">4</option>
                                                     </select>
                                                 </div>
 
@@ -122,17 +118,5 @@
             </div>
         </div>
     </div>
-
-    <style>
-        table th, table td {
-            font-size: 14px;
-            line-height: 1.2;
-        }
-
-        table a {
-            color: #0163b4;
-            text-decoration: none;
-        }
-    </style>
 
 @endsection

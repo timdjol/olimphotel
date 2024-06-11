@@ -62,21 +62,21 @@
                     <nav>
                         <ul>
                             <li @routeactive('hotels.index')><a href="{{route('hotels.index')}}"><i class="fas
-                            fa-hotel"></i> Отели</a></li>
+                            fa-hotel"></i> Hotels</a></li>
                             <li @routeactive('bookings.index')><a href="{{route('bookings.index')}}"><i
                                         class="fa-regular
-                            fa-tag"></i> Цены и наличие</a></li>
+                            fa-tag"></i> Rates and availability</a></li>
                             <li @routeactive('listbooks.index')><a href="{{route('listbooks.index')}}"><i
-                                        class="fa-regular fa-tag"></i> Брони</a></li>
+                                        class="fa-regular fa-tag"></i> Bookings</a></li>
                             <li @routeactive('rooms.index')><a href="{{route('rooms.index')}}"><i class="fas
-                            fa-booth-curtain"></i> Номера</a></li>
-                            <li><a href="{{route('bills.index')}}"><i class="fa-thin fa-money-bills"></i> Счета</a></li>
+                            fa-booth-curtain"></i> Rooms</a></li>
+                            <li><a href="{{route('bills.index')}}"><i class="fa-thin fa-money-bills"></i> Bills</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-md-4 person">
-                    <a href="{{route('profile.edit')}}"><i class="fa-regular fa-address-card"></i> Профиль</a>
-                    <a href="{{route('logout')}}" class="delete"><i class="fa-regular fa-door-open"></i> Выйти</a>
+                    <a href="{{route('profile.edit')}}"><i class="fa-regular fa-address-card"></i> Profile</a>
+                    <a href="{{route('logout')}}" class="delete"><i class="fa-regular fa-door-open"></i> Logout</a>
                 </div>
             </div>
         </div>
@@ -139,8 +139,8 @@
             longPressDelay: 0,
             selectHelper: true,
             validRange: {
-                start: today,
-                end: '2024-12-31'
+                start: '2023-12-31',
+                end: '2027-12-31'
             },
             select: function (start, end) {
                 let start_d = $.fullCalendar.formatDate(start, "Y-MM-DD");
@@ -261,8 +261,8 @@
                 }
             },
             eventRender: function (event, element) {
-                element.find('.fc-title').append("<br/>" + event.hotel_id + "<br/>" + event.room_id + "<br/>Телефон: " +
-                    event.phone);
+                element.find('.fc-title').append("<br/>Взрослые: " + event.count + "<br/>Дет: " + event.extra_place +
+                "<br/>Телефон: " + event.phone);
         }
         {{--eventRender: function (event, element) {--}}
             {{--    element.find('.fc-title').append("<br/>" + event.phone + "<br/>" + event.email + "<br/>Коммент: " +--}}
@@ -305,40 +305,6 @@
 
     input.addEventListener('change', handleChange);
     input.addEventListener('keyup', handleChange);
-
-
-    $(document).ready(function () {
-        $('#hotels').on('change', function () {
-            let idHotel = this.value;
-            $("#rooms").html('');
-            $.ajax({
-                url: "{{url('api/fetch-rooms')}}",
-                type: "POST",
-                data: {
-                    hotel_id: idHotel,
-                    _token: '{{csrf_token()}}'
-                },
-                dataType: 'json',
-                success: function (result) {
-                    $('#rooms').html('<option value="">Выбрать</option>');
-                    $.each(result.rooms, function (key, value) {
-                        $("#rooms").append('<option value="' + value
-                            .id + '">' + value.title + '</option>');
-                    });
-                }
-            });
-        });
-
-        $(function() {
-            $('#dynamic_select').on('change', function() {
-                let url = $(this).val();
-                if (url) {
-                    window.location = url;
-                }
-                return false;
-            });
-        });
-    });
 
 
 </script>

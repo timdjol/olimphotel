@@ -1,12 +1,12 @@
 <div class="sidebar">
     <ul>
         @admin
-            <li @routeactive('hotels.show')><a href="{{ route('hotels.show', $hotel)}}"><i class="fas fa-gauge"></i>
-            Информация</a></li>
-            <li @routeactive('services.index')><a href="{{ route('services.index')}}"><i class="fa-regular
-            fa-bell-concierge"></i> Удобства и услуги</a></li>
-            <li @routeactive('payments.index')>
-            <a href="{{ route('payments.index')}}"><i class="fa-regular fa-money-bill"></i> Способы оплаты</a>
+            <li @routeactive('hotel*')><a href="{{ route('hotels.show', $hotel)}}"><i class="fas fa-gauge"></i>
+            Information</a></li>
+            <li @routeactive('servic*')><a href="{{ route('services.index')}}"><i class="fa-regular
+            fa-bell-concierge"></i> Facilities and Services</a></li>
+            <li @routeactive('payment*')>
+            <a href="{{ route('payments.index')}}"><i class="fa-regular fa-money-bill"></i> Payment Methods</a>
             </li>
 {{--            <li @routeactive('policies.index')><a href="{{ route('policies.index')}}"><i class="fa-regular fa-key"></i>--}}
 {{--            Политика</a></li>--}}

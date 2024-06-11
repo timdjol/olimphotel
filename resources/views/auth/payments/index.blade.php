@@ -1,6 +1,6 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Способы оплаты')
+@section('title', 'Payment Methods')
 
 @section('content')
 
@@ -11,12 +11,12 @@
                     @include('auth.layouts.sidebar')
                 </div>
                 <div class="col-md-9">
-                    <h1>Способы оплаты</h1>
+                    <h1>Payment Methods</h1>
                     @if(!$payments->isEmpty())
                     <table>
                         <tr>
-                            <th>Способы оплаты</th>
-                            <th>Действия</th>
+                            <th>Payment Methods</th>
+                            <th>Action</th>
                         </tr>
                         @foreach($payments as $payment)
                             <tr>

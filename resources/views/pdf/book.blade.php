@@ -48,7 +48,11 @@
                     <div class="col-md-6">
                         <div class="dashboard-item">
                             <div class="name">ФИО</div>
-                            {{ $book->title }}
+                            {{ $book->title }} <br>
+                            {{ $book->title2 }} <br>
+                            {{ $book->titlec1 }} - ({{ $book->age1 }}) <br>
+                            {{ $book->titlec2 }} - ({{ $book->age2 }}) <br>
+                            {{ $book->titlec3 }} - ({{ $book->age3 }})
                         </div>
                     </div>
                     <div class="col-md-6">

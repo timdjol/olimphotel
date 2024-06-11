@@ -7,11 +7,16 @@
 <form method="post" action="{{ route('profile.update') }}">
     @csrf
     @method('patch')
+    @error ('name')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">Ваше имя</label>
         <input type="text" name="name" value="{{ old('name', $user->name) }}">
     </div>
-
+    @error ('email')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">Email</label>
         <input type="email" name="email" value="{{ old('name', $user->email) }}">
@@ -33,6 +38,17 @@
                 @endif
             </div>
         @endif
+    </div>
+    @error ('phone')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    <div class="form-group">
+        <label for="">Номер телефона</label>
+        <input type="number" name="phone" id="phone" value="{{ old('phone', $user->phone) }}">
+    </div>
+    <div class="form-group">
+        <label for="">Комиссия (%)</label>
+        <input type="number" name="comission" value="{{ old('comission', $user->comission) }}">
     </div>
     <button class="more">Сохранить</button>
     @if (session('status') === 'profile-updated')

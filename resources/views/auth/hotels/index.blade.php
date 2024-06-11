@@ -9,13 +9,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <form action="">
-                        <input type="search" value="{{ $s_query ?? '' }}" placeholder="Поиск...">
+                        <input type="search" value="{{ $s_query ?? '' }}" placeholder="Search...">
                     </form>
                 </div>
                 <div class="col-md-3">
                     <div class="add">
                         <a href="{{ route('hotels.create') }}" class="more"><i class="fa-regular fa-plus"></i>
-                            Добавить недвижимость</a>
+                            Add</a>
                     </div>
                 </div>
             </div>
@@ -23,16 +23,17 @@
                 <div class="col-md-12">
                     <table>
                         <tr>
-                            <th>Наименование</th>
-                            <th>Адрес</th>
-                            <th>Действия</th>
+                            <th>Title</th>
+                            <th>Address</th>
+                            <th>Action</th>
                         </tr>
                         @foreach($hotels as $hotel)
                         <tr>
                             <td>{{ $hotel->title }}</td>
                             <td>{{ $hotel->address }}</td>
                             <td>
-                                <a href="{{ route('hotels.show', $hotel) }}" class="more"><i class="fa-regular fa-pen-to-square"></i> Выбрать</a>
+                                <a href="{{ route('hotels.show', $hotel) }}" class="more"><i class="fa-regular
+                                fa-pen-to-square"></i> Edit</a>
                             </td>
                         </tr>
                         @endforeach

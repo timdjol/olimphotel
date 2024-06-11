@@ -1,9 +1,9 @@
 @extends('auth.layouts.master')
 
 @isset($payment)
-    @section('title', 'Редактировать страницу')
+    @section('title', 'Edit')
 @else
-    @section('title', 'Создать страницу')
+    @section('title', 'Add payment')
 @endisset
 
 @section('content')
@@ -15,7 +15,7 @@
                     @include('auth.layouts.sidebar')
                 </div>
                 <div class="col-md-9">
-                    <h1>Способы оплаты</h1>
+                    <h1>Payment Methods</h1>
                     <form method="post"
                         @isset($payment)
                             action="{{ route('payments.update', $payment) }}"
@@ -54,6 +54,13 @@
                                     <input id="pool" type="checkbox" name="payments[]" value="PayPal"
                                     @isset($payment){{in_array('PayPal', $payments) ? 'checked' : '' }}@endisset>
                                     <label for="pool">PayPal</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input id="bank" type="checkbox" name="payments[]" value="Bank Transfer"
+                                    @isset($payment){{in_array('Bank Transfer', $payments) ? 'checked' : '' }}@endisset>
+                                    <label for="bank">Bank Transfer</label>
                                 </div>
                             </div>
                         </div>

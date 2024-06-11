@@ -16,6 +16,10 @@ class Book extends Model
         'hotel_id',
         'room_id',
         'title',
+        'title2',
+        'titlec1',
+        'titlec2',
+        'titlec3',
         'phone',
         'email',
         'comment',
@@ -24,7 +28,10 @@ class Book extends Model
         'sum',
         'status',
         'start_d',
-        'end_d'
+        'end_d',
+        'age1',
+        'age2',
+        'age3'
     ];
 
     public function rooms(){
