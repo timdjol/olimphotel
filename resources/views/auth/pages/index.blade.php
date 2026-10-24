@@ -7,8 +7,24 @@
     <div class="page admin">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Страницы</h1>
+                <div class="col-md-3">
+                    @include('auth.layouts.sidebar')
+                </div>
+                <div class="col-md-9">
+                    @if(session()->has('success'))
+                        <p class="alert alert-success">{{ session()->get('success') }}</p>
+                    @endif
+                    @if(session()->has('warning'))
+                        <p class="alert alert-warning">{{ session()->get('warning') }}</p>
+                    @endif
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h1>Страницы</h1>
+                        </div>
+                        <div class="col-md-5">
+                            <a class="btn add" href="{{ route('pages.create') }}">Добавить</a>
+                        </div>
+                    </div>
                     <table class="table">
                         <thead>
                         <tr>

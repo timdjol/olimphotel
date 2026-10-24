@@ -6,10 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Coupon;
-use App\Models\Order;
 use App\Models\Page;
 use App\Models\Room;
-use App\Models\Hotel;
+use App\Models\Travel;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -17,14 +16,13 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $books = Book::get();
-        $hotels = Hotel::get();
+        $user = Auth::user();
         $rooms = Room::get();
-        $users = Auth::user();
-        //$pages = Page::get();
-
+        $page = Page::get();
+        $travel = Travel::get();
+        $books = Book::get();
         return view('auth.dashboard',
-            compact('users', 'rooms','books', 'hotels'));
+            compact('user', 'rooms', 'page', 'travel', 'books'));
     }
 
 }

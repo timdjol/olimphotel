@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="pagetitle" style="background-image: url({{ url('/') }}/img/page.jpg)">
+    <div class="pagetitle" style="background-image: url({{ url('/') }}/img/111.jpg)">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -20,7 +20,15 @@
         </div>
     </div>
 
-    <div class="page contacts">
+    <!-- start Search form script -->
+    <div id='block-search'>
+        <div id='be-search-form' class='be-container'>
+            <a href='https://exely.com/' rel='nofollow' target='_blank'>Hotel management software</a>
+        </div>
+    </div>
+    <!-- end Search form script -->
+
+    <div class="page contacts pt0">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-12">
@@ -29,13 +37,13 @@
                     <script>
                         DG.then(function () {
                             var map = DG.map('map', {
-                                center: [42.876510, 74.581205],
-                                zoom: 16
+                                center: [42.6512993, 77.1130353],
+                                zoom: 14
                             });
 
-                            DG.marker([42.876510, 74.581205], { scrollWheelZoom: false })
+                            DG.marker([42.6512993, 77.1130353], { scrollWheelZoom: false })
                                 .addTo(map)
-                                .bindLabel('StayBook', {
+                                .bindLabel('OlimpHotel&Travel', {
                                     static: true
                                 });
                         });

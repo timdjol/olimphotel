@@ -40,6 +40,11 @@ class PageController extends Controller
             $path = $request->file('image')->store('pages');
             $params['image'] = $path;
         }
+        unset($params['cert']);
+        if($request->has('cert')){
+            $path = $request->file('cert')->store('pages');
+            $params['cert'] = $path;
+        }
         Page::create($params);
         session()->flash('success', 'Страница ' . $request->title . ' добавлена');
         return redirect()->route('pages.index');
@@ -68,6 +73,11 @@ class PageController extends Controller
     {
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
+        unset($params['cert']);
+        if ($request->has('cert')) {
+            Storage::delete($page->image);
+            $params['cert'] = $request->file('cert')->store('pages');
+        }
         unset($params['image']);
         if ($request->has('image')) {
             Storage::delete($page->image);

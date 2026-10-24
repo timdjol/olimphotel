@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Room;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
@@ -11,9 +10,11 @@ class CalendarController extends Controller
 
     public function index($id)
     {
-        $room = Room::where('id', $id)->firstOrFail();
+        //$room_id = Room::where('id', $id)->get();
+
         $events = array();
         $bookings = Book::where('room_id', $id)->get();
+
         foreach ($bookings as $booking){
             $color = null;
             if($booking->title == 'ariet'){
@@ -32,21 +33,17 @@ class CalendarController extends Controller
                 'color' => $color
             ];
         }
-        return view('pages.books', compact('id', 'events', 'room'));
+        return view('pages.books', compact('id', 'events'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-           'title' => 'required|string'
-        ]);
+//        $request->validate([
+//           'title' => 'required|string'
+//        ]);
         $params = $request->all();
         $booking = Book::create($params);
-        $room = Room::where('id', $request->room_id)->firstOrFail();
-        $room->decrement('count', $request->count);
-        session()->flash('success', 'Бронирование ' . $booking->title . ' создано');
-        //return response()->json($booking);
-        return redirect()->route('books.index', $room->id);
+        return response()->json($booking);
     }
 
     public function update(Request $request, $id)
@@ -75,4 +72,7 @@ class CalendarController extends Controller
         $booking->delete();
         return $id;
     }
+
+
+
 }

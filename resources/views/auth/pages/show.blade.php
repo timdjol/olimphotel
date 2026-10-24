@@ -7,6 +7,9 @@
     <div class="page admin">
         <div class="container">
             <div class="row">
+                <div class="col-md-3">
+                    @include('auth.layouts.sidebar')
+                </div>
                 <div class="col-md-9">
                     <h1>Страница {{ $page->title }}</h1>
                     {!! $page->description !!}

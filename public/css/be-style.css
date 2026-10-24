@@ -1,0 +1,29 @@
+#block-search, #block-search * {
+    box-sizing: border-box;
+}
+
+#block-search {
+    background: #E2EFEF;
+}
+
+#block-search.home {
+    margin-top: -26px;
+}
+
+.be-container {
+    max-width: 1290px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#be-booking-form {
+    width: 100%;
+    max-width: 1120px;
+    margin: 30px auto;
+    z-index: 0;
+}
+
+.booking-page .soc,
+.booking-page .btn-wrap {
+    display: none;
+}

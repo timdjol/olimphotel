@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -7,7 +6,7 @@
     <meta charset="utf-8">
     <!-- <base href="/"> -->
 
-    <title>@yield('title') - SilkWayTravel</title>
+    <title>@yield('title') - OlimpHotelTravel</title>
     <meta name="description" content="">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,14 +21,26 @@
     <!-- Custom Browsers Color Start -->
     <meta name="theme-color" content="#000">
     <!-- Custom Browsers Color End -->
-    <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css"
-          rel="stylesheet">
-    <link rel="stylesheet" href="{{route('index')}}/css/main.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{route('index')}}/css/main.min.css?ver=1.2">
     <link rel="stylesheet" href="{{route('index')}}/css/style.css">
 
-
-    <script src="{{route('index')}}/js/scripts.min.js"></script>
-
+    <!-- start head script -->
+    <script type='text/javascript'>
+        !function(e,n){
+            var t="bookingengine",o="integration",i=e[t]=e[t]||{},a=i[o]=i[o]||{},r="__cq",c="__loader",d="getElementsByTagName";
+            if(n=n||[],a[r]=a[r]?a[r].concat(n):n,!a[c]){a[c]=!0;var l=e.document,g=l[d]("head")[0]||l[d]("body")[0];
+                !function n(i){if(0!==i.length){var a=l.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://"+i[0]+"/integration/loader.js",
+                    a.onerror=a.onload=function(n,i){return function(){e[t]&&e[t][o]&&e[t][o].loaded||(g.removeChild(n),i())}}(a,(function(){n(i.slice(1,i.length))})),g.appendChild(a)}}(
+                    ["kg-ibe.hopenapi.com","ibe.hopenapi.com","ibe.behopenapi.com"])}
+        }(window,[
+            ['setContext', 'BE-INT-olimphoteltravel_2024-04-03', @php if(app()->getLocale() == 'ru') {echo "'ru'";} elseif(app()->getLocale() == 'en') {echo "'en'";}@endphp],
+            ['embed', 'booking-form', {container: 'be-booking-form'}],
+            ['embed', 'search-form', {container: 'be-search-form'}],
+        ]);
+    </script>
+    <link rel="stylesheet" href="{{route('index')}}/css/be-style.css">
+    <!-- end head script -->
 
 </head>
 
@@ -37,12 +48,12 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 col-md-4 col-6">
+            <div class="col-md-2 col-6">
                 <div class="logo">
-                    <a href="{{route('homepage')}}"><img src="https://silkway.timmedia.store/img/logo.png" alt=""></a>
+                    <a href="{{route('index')}}"><img src="{{ url('/') }}/img/logo.svg" alt=""></a>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-8 col-6">
+            <div class="col-md-10 col-6">
                 <ul class="lang d-xl-none d-lg-none d-inline-block">
                     <li class="
                             @if(session('locale')=='ru')
@@ -58,19 +69,16 @@
                 <nav>
                     <a href="#" class="toggle-mnu d-xl-none d-lg-none"><span></span></a>
                     <ul>
-                        <li @routeactive(
-                        'homepage')><a href="{{route('homepage')}}">@lang('main.home')</a></li>
-                        <li @routeactive(
-                        'hotels')><a href="{{route('hotels')}}">@lang('main.hotels')</a></li>
-                        <li @routeactive(
-                        'allrooms')><a href="{{route('allrooms')}}">@lang('main.rooms')</a></li>
-                        <li @routeactive(
-                        'about')><a href="{{route('about')}}">@lang('main.about')</a></li>
-                        <li @routeactive(
-                        'contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
+                        <li @routeactive('index')><a href="{{route('index')}}">@lang('main.home')</a></li>
+                        <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
+                        <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
+                        <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
+                        <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                         </a></li>
+                        <li><a href="{{route('tour')}}" class="more">3D Tour</a></li>
+
                     </ul>
-                    <ul class="lang d-xl-inline-block d-lg-inline-block d-none">
+                    <ul class="lang">
                         <li class="
                             @if(session('locale')=='ru')
                                 current
@@ -109,15 +117,15 @@
             <div class="row">
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-item">
-                        <div class="logo"><img src="{{ url('/') }}/img/logo.png" alt=""></div>
+                        <div class="logo"><img src="{{ url('/') }}/img/logo.svg" alt=""></div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
-                        <h4>@lang('main.hotels')</h4>
+                        <h4>@lang('main.rooms')</h4>
                         <ul>
-                            @foreach($hotels as $hotel)
-                                <li><a href="{{ route('hotel', $hotel->code) }}">{{ $hotel->__('title')
+                            @foreach($rooms as $room)
+                                <li><a href="{{ route('room', $room->code) }}">{{ $room->__('title')
                                 }}</a></li>
                             @endforeach
                         </ul>
@@ -127,14 +135,10 @@
                     <div class="footer-item">
                         <h4>@lang('main.navigation')</h4>
                         <ul>
-                            <li @routeactive(
-                            'hotels')><a href="{{route('hotels')}}">@lang('main.hotels')</a></li>
-                            <li @routeactive(
-                            'allrooms')><a href="{{route('allrooms')}}">@lang('main.rooms')</a></li>
-                            <li @routeactive(
-                            'about')><a href="{{route('about')}}">@lang('main.about')</a></li>
-                            <li @routeactive(
-                            'contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
+                            <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
+                            <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
+                            <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
+                            <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                             </a></li>
                         </ul>
                     </div>
@@ -148,11 +152,9 @@
                             <li><a href="tel:{{ $contacts->first()->phone2 }}">{{ $contacts->first()->phone2 }}</a></li>
                         </ul>
                         <ul class="soc">
-                            <li><a href="{{ $contacts->first()->instagram }}" target="_blank"><img
-                                            src="{{route('index')}}/img/instagram.svg" alt=""></a>
+                            <li><a href="{{ $contacts->first()->instagram }}" target="_blank"><img src="{{route('index')}}/img/instagram.svg" alt=""></a>
                             </li>
-                            <li><a href="https://wa.me/{{ $contacts->first()->whatsapp }}" target="_blank"><img
-                                            src="{{route('index')}}/img/whatsapp.svg" alt=""></a></li>
+                            <li><a href="https://wa.me/{{ $contacts->first()->whatsapp }}" target="_blank"><img src="{{route('index')}}/img/whatsapp.svg" alt=""></a></li>
                         </ul>
                     </div>
                 </div>
@@ -163,21 +165,42 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>@lang('main.copy') &copy; {{ date('Y') }} silkwaytravel.kg</p>
+                    <p>@lang('main.copy') &copy; {{ date('Y') }} olimphoteltravel.com</p>
+                    <style>
+    .developer {
+        font-size: 14px;
+        color: #f5f5f5;
+        text-align: center;
+    }
+
+    .developer a {
+        color: #fff;
+        text-decoration: none;
+        transition: .3s;
+    }
+
+    .developer a:hover {
+        color: #c0392b;
+    }
+</style>
+<div class="developer">
+    Developed by <a href="https://timdjol.com" target="_blank">Tim Djol</a>
+</div>
                 </div>
             </div>
         </div>
     </div>
 </footer>
 
+<div class="btn-wrap">
+    <a target="_blank" href="https://wa.me/{{ $contacts->first()->whatsapp }}">
+        <i class="Phone is-animating"></i>
+    </a>
+</div>
 
-<style>
-    header nav{
-        text-align: right;
-    }
-</style>
+<script src="{{route('index')}}/js/scripts.min.js"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
 
 
 </body>

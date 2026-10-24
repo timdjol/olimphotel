@@ -1,55 +1,137 @@
-.servlisting .item{
-    font-size: 14px;
-    line-height: 1.2;
-    margin-bottom: 10px;
+.page{
+    padding: 90px 0;
 }
-.hotel .include {
-    color: #0163b4;
-    opacity: 1;
+table {
+    width: 100%;
+    margin-bottom: 40px;
 }
-.maps {
-    margin-bottom: 60px;
-}
-body{
-    background-color: #f5f5f5;
-}
-.rooms-item{
-    background: #fff;
-    padding: 10px 0 20px;
-    border-radius: 10px;
-    margin-top: 20px
-}
-.search{
-    padding: 30px 0;
-}
-
-.hotel .early{
-    font-size: 14px;
-    opacity: .7;
-}
-.rooms .breakfast {
-    background-color: #0163b4;
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    display: inline-block;
-    opacity: 1;
-}
-
-.modal-backdrop.fade{
-    opacity: 0;
-    display: none;
-}
-.modal-content{
-    width: 500px;
-    margin-left: -250px;
-}
-.modal-header h3{
-    margin-top: 0;
-}
-.hotel-item{
-    margin: 40px 0;
-    background-color: #fff;
+table td, table th{
     padding: 10px;
-    border-radius: 10px;
+    border-top: 1px solid #ddd;
+}
+.alert{
+    padding: 5px 15px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+label{
+    font-size: 14px;
+}
+form select{
+    height: 50px;
+    width: 100%;
+    display: block;
+    padding: 5px 15px;
+    border: 1px solid #eee;
+}
+form button.more{
+    width: auto;
+}
+form input, form select{
+    border-radius: 5px;
+}
+
+.single .price{
+    font-size: 22px;
+}
+.single .btn-wrap{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.single .whatsapp{
+    background-color: #1bc839;
+}
+button:disabled,
+button[disabled]{
+    opacity: .5;
+}
+button.close{
+    border: none;
+    font-size: 12px;
+    background: none;
+    border: 1px solid #009291;
+}
+#output{
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+}
+#output.agree{
+    color: #009291;
+}
+input:read-only {
+    background-color: #ddd;
+}
+.modal-footer .btn-danger{
+    font-size: 12px;
+    padding: 5px;
+}
+.footer ul li{
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+header{
+    border-bottom: 1px solid #ddd;
+}
+.slider-item{
+    background-position: top center;
+    height: 90vh;
+}
+@media(max-width: 650px){
+    .slider-item{
+        height: 40vh !important;
+    }
+    .single .fotorama{
+        margin-bottom: 20px;
+    }
+    .single .btn-wrap .more{
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .related {
+        margin-top: 30px;
+    }
+    .related h2{
+        margin-bottom: 0;
+    }
+    .single-travel h1{
+        text-align: center;
+        margin-top: 20px;
+    }
+    .relatedtravel{
+        margin-top: 0;
+        padding-top: 0
+    }
+    .relatedtravel h2{
+        margin-bottom: 20px;
+    }
+    .rent ul.tabs li{
+        display: block;
+        margin-bottom: 10px;
+    }
+    .rent .tab-content .img{
+        margin-bottom: 15px;
+    }
+    .about h2{
+        margin-bottom: 10px;
+    }
 }

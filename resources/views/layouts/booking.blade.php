@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <!-- <base href="/"> -->
 
-    <title>@yield('title') - SilkWayTravel</title>
+    <title>@yield('title') - OlimpHotelTravel</title>
     <meta name="description" content="">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css
+" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{route('index')}}/css/main.min.css">
     <link rel="stylesheet" href="{{route('index')}}/css/style.css">
 
@@ -36,12 +39,12 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 col-md-4 col-6">
+            <div class="col-md-2 col-6">
                 <div class="logo">
-                    <a href="{{route('homepage')}}"><img src="{{ url('/') }}/img/logo.png" alt=""></a>
+                    <a href="{{route('index')}}"><img src="{{ url('/') }}/img/logo.svg" alt=""></a>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-8 col-6">
+            <div class="col-md-10 col-6">
                 <ul class="lang d-xl-none d-lg-none d-inline-block">
                     <li class="
                             @if(session('locale')=='ru')
@@ -57,19 +60,15 @@
                 <nav>
                     <a href="#" class="toggle-mnu d-xl-none d-lg-none"><span></span></a>
                     <ul>
-                        <li @routeactive(
-                        'homepage')><a href="{{route('homepage')}}">@lang('main.home')</a></li>
-                        <li @routeactive(
-                        'hotels')><a href="{{route('hotels')}}">@lang('main.hotels')</a></li>
-                        <li @routeactive(
-                        'allrooms')><a href="{{route('allrooms')}}">@lang('main.rooms')</a></li>
-                        <li @routeactive(
-                        'about')><a href="{{route('about')}}">@lang('main.about')</a></li>
-                        <li @routeactive(
-                        'contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
+                        <li @routeactive('index')><a href="{{route('index')}}">@lang('main.home')</a></li>
+                        <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
+                        <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
+                        <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
+                        <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                         </a></li>
+
                     </ul>
-                    <ul class="lang d-xl-inline-block d-lg-inline-block d-none">
+                    <ul class="lang">
                         <li class="
                             @if(session('locale')=='ru')
                                 current
@@ -108,15 +107,15 @@
             <div class="row">
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-item">
-                        <div class="logo"><img src="{{ url('/') }}/img/logo.png" alt=""></div>
+                        <div class="logo"><img src="{{ url('/') }}/img/logo.svg" alt=""></div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
-                        <h4>@lang('main.hotels')</h4>
+                        <h4>@lang('main.rooms')</h4>
                         <ul>
-                            @foreach($hotels as $hotel)
-                                <li><a href="{{ route('hotel', $hotel->code) }}">{{ $hotel->__('title')
+                            @foreach($rooms as $room)
+                                <li><a href="{{ route('room', $room->code) }}">{{ $room->__('title')
                                 }}</a></li>
                             @endforeach
                         </ul>
@@ -126,14 +125,10 @@
                     <div class="footer-item">
                         <h4>@lang('main.navigation')</h4>
                         <ul>
-                            <li @routeactive(
-                            'hotels')><a href="{{route('hotels')}}">@lang('main.hotels')</a></li>
-                            <li @routeactive(
-                            'allrooms')><a href="{{route('allrooms')}}">@lang('main.rooms')</a></li>
-                            <li @routeactive(
-                            'about')><a href="{{route('about')}}">@lang('main.about')</a></li>
-                            <li @routeactive(
-                            'contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
+                            <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
+                            <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
+                            <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
+                            <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                             </a></li>
                         </ul>
                     </div>
@@ -160,12 +155,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>@lang('main.copy') &copy; {{ date('Y') }} silkwaytravel.kg</p>
+                    <p>@lang('main.copy') &copy; {{ date('Y') }} olimphoteltravel.com</p>
                 </div>
             </div>
         </div>
     </div>
 </footer>
+
+<div class="btn-wrap">
+    <a target="_blank" href="https://wa.me/{{ $contacts->first()->whatsapp }}">
+        <i class="Phone is-animating"></i>
+    </a>
+</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -178,10 +180,6 @@
 <style>
     .fc-day-grid-event .fc-time{
         display: none;
-    }
-    tr:first-child>td>.fc-day-grid-event{
-        height: 75px;
-        margin: 0;
     }
 </style>
 <script>
@@ -199,6 +197,7 @@
             }
         });
         let events = @json($events);
+        console.log(events);
         let date = new Date();
         let today = date.setDate(date.getDate() - 1);
         $('#calendar').fullCalendar({
@@ -207,7 +206,7 @@
                 center: "title",
                 right: "month"
             },
-            eventColor: '#0163b4',
+            eventColor: '#009291',
             eventTextColor: '#fff',
             timezone: 'Asian/Bishkek',
             @if(session('locale')=='ru')
@@ -230,24 +229,9 @@
                 let end_d = $.fullCalendar.formatDate(end, "Y-MM-DD");
                 $("#start_d").val(start_d);
                 $("#end_d").val(end_d);
+
                 $("#show_modal").modal("show");
 
-                $("#count, #countc").change(function(){
-                    let price = $('#price').text();
-                    let pricec = $('#pricec').text();
-                    let count = $('#count').val();
-                    let countc = $('#countc').val();
-                    let start_d = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                    let end_d = $.fullCalendar.formatDate(end, "Y-MM-DD");
-                    let st = new Date(start_d);
-                    let en = new Date(end_d);
-                    let millisecondsPerDay = 1000 * 60 * 60 * 24;
-                    let millisBetween = en.getTime() - st.getTime();
-                    let days = millisBetween / millisecondsPerDay;
-                    let sum = (price * count * days) + (pricec * countc * days);
-                    $('#sum').val(sum + ' сом');
-                });
-                
                 $('#saveBtn').click(function (){
                     let room_id = $(".modal").find("#room_id").val();
                     let title = $(".modal").find("#title").val();
@@ -255,6 +239,25 @@
                     let email = $(".modal").find("#email").val();
                     let comment = $(".modal").find("#comment").val();
                     let count = $(".modal").find("#count").val();
+                    $.ajax({
+                        url: "{{ route('books.store') }}",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {room_id, title, phone, email, comment, count, start_d, end_d},
+                        success: function(response){
+                            Swal.fire({
+                                title: 'Бронирование создано!',
+                                //text: 'Do you want to continue',
+                                icon: 'success',
+                                confirmButtonText: 'Продолжить'
+                            })
+                        },
+                        error: function(error){
+                            // if(error.responseJSON.errors){
+                            //     $('#titleError').html(error.responseJSON.errors.title);
+                            // }
+                        }
+                    });
                 });
             },
             editable: false,
@@ -296,7 +299,13 @@
 
     input.addEventListener('change', handleChange);
     input.addEventListener('keyup', handleChange);
+
+
 </script>
+
+
+
 </body>
+
 </html>
 

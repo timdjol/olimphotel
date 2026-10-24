@@ -1,12 +1,41 @@
-:root {
-    --blue: #0163b4;
-}
 header{
     padding: 0;
 }
+.head{
+    background-color: #009291;
+    padding: 10px 0;
+}
+.head nav{
+    text-align: center;
+}
+.head ul li a{
+    color: #fff;
+}
+.sidebar ul li{
+    display: block;
+    margin-bottom: 10px;
+}
+.sidebar ul li.current a{
+    background-color: #009291;
+    color: #fff;
+}
+.sidebar ul li::after{
+    display: none;
+}
+.sidebar ul li a{
+    color: #333;
+    background-color: #ddd;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    transition: all .3s ease;
+}
+.sidebar ul li a:hover{
+    background-color: #009291;
+    color: #fff;
+}
 .admin table ul {
     margin-bottom: 0;
-    padding-left: 0;
 }
 .admin table ul li{
     display: inline-block;
@@ -26,13 +55,12 @@ header{
     text-decoration: none;
     color: #fff;
     border: none;
-    border-radius: 5px;
 }
 .admin a.add{
     background-color: green;
 }
 .admin a.view{
-    background-color: var(--blue);
+    background-color: #009291;
 }
 .admin a.edit{
     background-color: orange;
@@ -75,6 +103,25 @@ header{
     height: auto;
     margin-right: 5px;
 }
+.dashboard table{
+    margin-bottom: 0;
+}
+.dashboard-item{
+    padding: 20px;
+    border: 1px solid #009291;
+    text-align: center;
+    margin-top: 20px;
+}
+.dashboard-item .num{
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #009291;
+    line-height: 1.2;
+}
+.dashboard-item h5{
+    font-size: 18px;
+}
 .dashboard .sliders, .dashboard .reviews{
     margin-top: 40px;
 }
@@ -110,43 +157,5 @@ header{
     background-color: purple;
 }
 .icons .icon5:before {
-    background-color: var(--blue);
-}
-.admin .modal-content .print, .admin .modal-content .download{
-    display: inline-block;
-    margin-right: 40px;
-}
-.admin .modal-content .print a, .admin .modal-content .download a{
-    color: var(--blue);
-    text-decoration: none;
-}
-
-.admin .modal-content .img{
-    display: inline-block;
-}
-.admin .modal-content{
-    margin-top: 0;
-}
-.admin .modal-content .img img{
-    max-width: 200px;
-    margin-right: 20px;
-    border-radius: 10px;
-}
-.admin .modal-content .status .fa-regular{
-    color: green;
-}
-.bottom ul{
-    text-align: center;
-    padding-left: 0;
-}
-.bottom ul li{
-    display: inline-block;
-    margin: 0 10px;
-}
-.bottom ul li a{
-    color: #333;
-    text-decoration: none;
-}
-.bottom ul li a i{
-    color: var(--blue);
+    background-color: #009291;
 }
