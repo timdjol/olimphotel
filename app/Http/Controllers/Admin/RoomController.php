@@ -32,8 +32,10 @@ class RoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Room $room)
+    public function store(Request $request)
     {
+        $this->assertUpload($request, 'image');
+        $this->assertUpload($request, 'images', 'jpg,jpeg,png,webp,gif', true);
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['image']);
@@ -41,20 +43,16 @@ class RoomController extends Controller
             $path = $request->file('image')->store('rooms');
             $params['image'] = $path;
         }
-        Room::create($params);
+        $room = Room::create($params);
 
-        $images = $request->file('images');
-        if ($request->hasFile('images')) :
-            foreach ($images as $image):
-                $image = $image->store('rooms');
-                DB::table('images')->insert(
-                    array(
-                        'image'=>  $image,
-                        'room_id' => $room->id,
-                    )
-                );
-            endforeach;
-        endif;
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                DB::table('images')->insert([
+                    'image' => $image->store('rooms'),
+                    'room_id' => $room->id,
+                ]);
+            }
+        }
 
         session()->flash('success', 'Номер ' . $request->title . ' добавлен');
         return redirect()->route('rooms.index');
@@ -81,6 +79,8 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
+        $this->assertUpload($request, 'image');
+        $this->assertUpload($request, 'images', 'jpg,jpeg,png,webp,gif', true);
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['image']);

@@ -33,6 +33,8 @@ class PageController extends Controller
      */
     public function store(PageRequest $request)
     {
+        $this->assertUpload($request, 'image');
+        $this->assertUpload($request, 'cert');
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['image']);
@@ -71,6 +73,8 @@ class PageController extends Controller
      */
     public function update(PageRequest $request, Page $page)
     {
+        $this->assertUpload($request, 'image');
+        $this->assertUpload($request, 'cert');
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['cert']);

@@ -197,7 +197,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css
             }
         });
         let events = @json($events);
-        console.log(events);
         let date = new Date();
         let today = date.setDate(date.getDate() - 1);
         $('#calendar').fullCalendar({
@@ -222,7 +221,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css
             selectHelper: true,
             validRange: {
                 start: today,
-                end: '2024-12-31'
+                end: '{{ now()->addYears(2)->toDateString() }}'
             },
             select: function(start, end) {
                 let start_d = $.fullCalendar.formatDate(start, "Y-MM-DD");
@@ -232,7 +231,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css
 
                 $("#show_modal").modal("show");
 
-                $('#saveBtn').click(function (){
+                $('#saveBtn').off('click').on('click', function (e){
+                    e.preventDefault();
                     let room_id = $(".modal").find("#room_id").val();
                     let title = $(".modal").find("#title").val();
                     let phone = $(".modal").find("#phone").val();
@@ -252,10 +252,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css
                                 confirmButtonText: 'Продолжить'
                             })
                         },
-                        error: function(error){
-                            // if(error.responseJSON.errors){
-                            //     $('#titleError').html(error.responseJSON.errors.title);
-                            // }
+                        error: function(){
+                            Swal.fire({
+                                title: '{{ app()->getLocale() === 'ru' ? 'Проверьте поля бронирования' : 'Check the booking fields' }}',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            })
                         }
                     });
                 });

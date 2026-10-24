@@ -23,12 +23,13 @@
                         <ul>
                             <li class="current"><a href="{{ route('index') }}" target="_blank">Перейти на сайт</a></li>
                             @guest
-                                <li><a href="{{route('register')}}">Регистрация</a></li>
                                 <li><a href="{{route('login')}}">Войти</a></li>
                             @endguest
                             @auth
-{{--                                <li>{{ $user->name }}</li>--}}
-                                <li><a href="{{ route('get-logout') }}">Выйти</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">@csrf</form>
+                                </li>
                             @endauth
                         </ul>
                     </nav>

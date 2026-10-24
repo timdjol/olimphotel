@@ -2,13 +2,12 @@
 
 namespace App\ViewComposers;
 
-use App\Models\Contact;
+use App\Support\SiteCache;
 use Illuminate\View\View;
 
 class ContactsComposer
 {
     public function compose(View $view){
-        $contacts = Contact::get();
-        $view->with('contacts', $contacts);
+        $view->with('contacts', SiteCache::contacts());
     }
 }

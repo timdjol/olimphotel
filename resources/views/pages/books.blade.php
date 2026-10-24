@@ -71,7 +71,7 @@
                                         <label class="col-xs-4" for="end_d">@lang('main.end_d')</label>
                                         <input type="text" name="end_d" readonly id="end_d" />
                                     </div>
-                                    <button class="more" id="saveBtn">@lang('main.order')</button>
+                                    <button type="button" class="more" id="saveBtn">@lang('main.order')</button>
 
                                 </form>
                             </div>

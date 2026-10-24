@@ -2,13 +2,12 @@
 
 namespace App\ViewComposers;
 
-use App\Models\Room;
+use App\Support\SiteCache;
 use Illuminate\View\View;
 
 class RoomsComposer
 {
     public function compose(View $view){
-        $rooms = Room::get();
-        $view->with('rooms', $rooms);
+        $view->with('rooms', SiteCache::rooms());
     }
 }

@@ -17,7 +17,7 @@ class CheckIsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if(!$user->is_admin){
+        if (!$user || !$user->isAdmin()) {
             session()->flash('warning', 'У вас недостаточно прав администратора!');
             return redirect()->route('index');
         }

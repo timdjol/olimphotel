@@ -3,68 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-
     public function index($id)
     {
-        //$room_id = Room::where('id', $id)->get();
-
-        $events = array();
-        $bookings = Book::where('room_id', $id)->get();
-
-        foreach ($bookings as $booking){
-            $color = null;
-            if($booking->title == 'ariet'){
-                $color = 'red';
-            }
-            $events[] = [
-                'id' => $booking->id,
-                'room_id' => $booking->room_id,
-                'title' => $booking->title,
-                'phone' => $booking->phone,
-                'email' => $booking->email,
-                'comment' => $booking->comment,
-                'count' => $booking->count,
-                'start' => $booking->start_d,
-                'end' => $booking->end_d,
-                'color' => $color
-            ];
+        if (!Room::query()->whereKey($id)->exists()) {
+            abort(404);
         }
+
+        $events = Book::query()
+            ->where('room_id', $id)
+            ->get(['start_d', 'end_d'])
+            ->map(function (Book $booking) {
+                return [
+                    'start' => $booking->start_d,
+                    'end' => $booking->end_d,
+                    'title' => '',
+                ];
+            })
+            ->all();
+
         return view('pages.books', compact('id', 'events'));
     }
 
     public function store(Request $request)
     {
-//        $request->validate([
-//           'title' => 'required|string'
-//        ]);
-        $params = $request->all();
-        $booking = Book::create($params);
-        return response()->json($booking);
+        $data = $request->validate([
+            'room_id' => ['required', 'integer', 'exists:rooms,id'],
+            'title' => ['required', 'string', 'max:100'],
+            'phone' => ['required', 'string', 'max:30'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'comment' => ['nullable', 'string', 'max:1000'],
+            'count' => ['required', 'integer', 'between:1,10'],
+            'start_d' => ['required', 'date', 'after_or_equal:today'],
+            'end_d' => ['required', 'date', 'after:start_d'],
+        ]);
+
+        Book::create($data);
+
+        return response()->json(['ok' => true]);
     }
 
     public function update(Request $request, $id)
     {
         $booking = Book::find($id);
-        if(!$booking){
+        if (!$booking) {
             return response()->json([
                 'error' => 'Unable to locate the event'
             ], 404);
         }
-        $booking->update([
-           'start_d' => $request->start_d,
-           'end_d' => $request->end_d
+
+        $data = $request->validate([
+            'start_d' => ['required', 'date'],
+            'end_d' => ['required', 'date', 'after:start_d'],
         ]);
+
+        $booking->update($data);
+
         return response()->json('Event updated');
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $booking = Book::find($id);
-        if(!$booking){
+        if (!$booking) {
             return response()->json([
                 'error' => 'Unable to locate the event'
             ], 404);
@@ -72,7 +77,4 @@ class CalendarController extends Controller
         $booking->delete();
         return $id;
     }
-
-
-
 }

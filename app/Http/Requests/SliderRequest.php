@@ -23,7 +23,7 @@ class SliderRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3',
-            'image' => 'image'
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp,gif|max:8192'
         ];
     }
 

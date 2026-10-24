@@ -20,7 +20,6 @@ use App\Http\Controllers\PageController;
 */
 
 Route::get('locale/{locale}', 'App\Http\Controllers\MainController@changeLocale')->name('locale');
-Route::get('/logout', 'App\Http\Controllers\ProfileController@logout')->name('get-logout');
 
 
 Route::middleware('set_locale')->group(function(){
@@ -66,9 +65,9 @@ Route::middleware('set_locale')->group(function(){
 
     Route::get('/', [MainController::class, 'index'])->name('index');
     Route::get('/books/index/{id}', [CalendarController::class, 'index'])->name('books.index');
-    Route::post('/books', [CalendarController::class, 'store'])->name('books.store');
-    Route::patch('/books/update/{id}', [CalendarController::class, 'update'])->name('books.update');
-    Route::delete('/books/delete/{id}', [CalendarController::class, 'delete'])->name('books.delete');
+    Route::post('/books', [CalendarController::class, 'store'])->middleware('throttle:bookings')->name('books.store');
+    Route::patch('/books/update/{id}', [CalendarController::class, 'update'])->middleware(['auth', 'is_admin'])->name('books.update');
+    Route::delete('/books/delete/{id}', [CalendarController::class, 'delete'])->middleware(['auth', 'is_admin'])->name('books.delete');
 
     Route::get('/travel', [PageController::class, 'categorytravel'])->name('categorytravel');
     Route::get('/rooms', [PageController::class, 'rooms'])->name('rooms');
@@ -77,8 +76,8 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/contactspage', [PageController::class, 'contactspage'])->name('contactspage');
     Route::get('/booking', [PageController::class, 'booking'])->name('booking');
     //email
-    Route::post('contact_mail', [MainController::class, 'contact_mail'])->name('contact_mail');
-    Route::post('travel_mail', [MainController::class, 'travel_mail'])->name('travel_mail');
+    Route::post('contact_mail', [MainController::class, 'contact_mail'])->middleware('throttle:forms')->name('contact_mail');
+    Route::post('travel_mail', [MainController::class, 'travel_mail'])->middleware('throttle:forms')->name('travel_mail');
     //Route::get('/search', [MainController::class, 'search'])->name('search');
 
     Route::get('/travel/{travel}', [MainController::class, 'travel'])->name('travel');

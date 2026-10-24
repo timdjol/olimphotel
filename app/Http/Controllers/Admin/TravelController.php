@@ -32,6 +32,7 @@ class TravelController extends Controller
      */
     public function store(Request $request)
     {
+        $this->assertUpload($request, 'image');
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['image']);
@@ -66,6 +67,7 @@ class TravelController extends Controller
      */
     public function update(Request $request, Travel $travel)
     {
+        $this->assertUpload($request, 'image');
         $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['image']);
