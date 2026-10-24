@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
-@section('title', 'Об отеле')
+@section('title', __('main.about'))
+@section('description', __('main.meta_about'))
 
 @section('content')
 
@@ -98,191 +99,13 @@
     <div class="gallery">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new1.jpg"><div class="img" style="background-image: url(img/new/new1.jpg)"></div></a>
+                @foreach(range(1, 16) as $photo)
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
+                            <a href="{{ url('img/hotel/'.sprintf('%02d', $photo).'.jpg') }}"><div class="img" style="background-image: url({{ url('img/hotel/'.sprintf('%02d', $photo).'.jpg') }})"></div></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new2.jpg"><div class="img" style="background-image: url(img/new/new2.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new3.jpg"><div class="img" style="background-image: url(img/new/new3.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new4.jpg"><div class="img" style="background-image: url(img/new/new4.jpg)"></div></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new5.jpg"><div class="img" style="background-image: url(img/new/new5.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new6.jpg"><div class="img" style="background-image: url(img/new/new6.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new7.jpg"><div class="img" style="background-image: url(img/new/new7.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new8.jpg"><div class="img" style="background-image: url(img/new/new8.jpg)"></div></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new9.jpg"><div class="img" style="background-image: url(img/new/new9.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new10.jpg"><div class="img" style="background-image: url(img/new/new10.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new11.jpg"><div class="img" style="background-image: url(img/new/new11.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new12.jpg"><div class="img" style="background-image: url(img/new/new12.jpg)"></div></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new13.jpg"><div class="img" style="background-image: url(img/new/new13.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new14.jpg"><div class="img" style="background-image: url(img/new/new14.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new15.jpg"><div class="img" style="background-image: url(img/new/new15.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new16.jpg"><div class="img" style="background-image: url(img/new/new16.jpg)"></div></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new17.jpg"><div class="img" style="background-image: url(img/new/new17.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new18.jpg"><div class="img" style="background-image: url(img/new/new18.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new19.jpg"><div class="img" style="background-image: url(img/new/new19.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new20.jpg"><div class="img" style="background-image: url(img/new/new20.jpg)"></div></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new21.jpg"><div class="img" style="background-image: url(img/new/new21.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new22.jpg"><div class="img" style="background-image: url(img/new/new22.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new23.jpg"><div class="img" style="background-image: url(img/new/new23.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new24.jpg"><div class="img" style="background-image: url(img/new/new24.jpg)"></div></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new25.jpg"><div class="img" style="background-image: url(img/new/new25.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new26.jpg"><div class="img" style="background-image: url(img/new/new26.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/new/new27.jpg"><div class="img" style="background-image: url(img/new/new27.jpg)"></div></a>
-                    </div>
-                </div>
- 
-                
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/1.jpg"><div class="img" style="background-image: url(img/1.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/3.jpg"><div class="img" style="background-image: url(img/3.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/1.jpg"><div class="img" style="background-image: url(img/1.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/4.jpg"><div class="img" style="background-image: url(img/4.jpg)"></div></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/6.jpg"><div class="img" style="background-image: url(img/6.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/5.jpg"><div class="img" style="background-image: url(img/5.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/8.jpg"><div class="img" style="background-image: url(img/8.jpg)"></div></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-duration="2000">
-                        <a href="img/7.jpg"><div class="img" style="background-image: url(img/7.jpg)"></div></a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </div>

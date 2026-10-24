@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
-@section('title', 'Экскурсии')
+@section('title', __('main.travel'))
+@section('description', __('main.meta_travel'))
 
 @section('content')
 

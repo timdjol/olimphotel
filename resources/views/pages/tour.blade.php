@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('title', '3D Tour')
+@section('description', __('main.meta_tour'))
 
 @section('content')
 

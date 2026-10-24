@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('title', app()->getLocale() === 'ru' ? 'Бронирование номеров в отеле Olimp, Чолпон-Ата - Официальный сайт' : 'Online reservation, Cholpon-Ata - Official Site')
+@section('description', __('main.meta_booking'))
 
 @section('content')
 

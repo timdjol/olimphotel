@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
-@section('title', 'Контакты')
+@section('title', __('main.contacts'))
+@section('description', __('main.meta_contacts'))
 
 @section('content')
 
@@ -51,9 +52,12 @@
                     {!! $page->__('description') !!}
                     <form action="{{ route('contact_mail') }}" method="post">
                         <div class="row">
+                            <div style="position:absolute;left:-9999px" aria-hidden="true">
+                                <input type="text" name="company" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" name="name" placeholder="@lang('main.name')">
+                                    <input type="text" name="name" placeholder="@lang('main.name')" required value="{{ old('name') }}">
                                 </div>
                             </div>
                             <div class="col-md-4">

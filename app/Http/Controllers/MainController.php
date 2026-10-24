@@ -68,6 +68,10 @@ class MainController extends Controller
 
     public function contact_mail(Request $request)
     {
+        if ($request->filled('company')) {
+            return redirect()->route('contactspage')->with('form_ok', __('main.form_ok'));
+        }
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:255'],
@@ -75,12 +79,22 @@ class MainController extends Controller
             'message' => ['nullable', 'string', 'max:2000'],
         ]);
 
-        Mail::to('info@olimphoteltravel.com')->send(new ContactMail((object) $data));
-        return redirect()->route('contactspage');
+        try {
+            Mail::to('info@olimphoteltravel.com')->send(new ContactMail((object) $data));
+        } catch (\Throwable $e) {
+            report($e);
+            return back()->withInput()->with('form_error', __('main.form_error'));
+        }
+
+        return redirect()->route('contactspage')->with('form_ok', __('main.form_ok'));
     }
 
     public function travel_mail(Request $request)
     {
+        if ($request->filled('company')) {
+            return redirect()->route('categorytravel')->with('form_ok', __('main.form_ok'));
+        }
+
         $data = $request->validate([
             'travel' => ['required', 'string', 'max:255'],
             'choose' => ['required', 'string', 'max:255'],
@@ -92,8 +106,15 @@ class MainController extends Controller
         ]);
 
         Order::create($data);
-        Mail::to('info@olimphoteltravel.com')->send(new TravelMail((object) $data));
-        return redirect()->route('categorytravel');
+
+        try {
+            Mail::to('info@olimphoteltravel.com')->send(new TravelMail((object) $data));
+        } catch (\Throwable $e) {
+            report($e);
+            return redirect()->route('categorytravel')->with('form_error', __('main.form_error'));
+        }
+
+        return redirect()->route('categorytravel')->with('form_ok', __('main.form_ok'));
     }
 
 

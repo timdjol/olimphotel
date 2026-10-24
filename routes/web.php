@@ -64,7 +64,9 @@ Route::middleware('set_locale')->group(function(){
 
 
     Route::get('/', [MainController::class, 'index'])->name('index');
-    Route::get('/books/index/{id}', [CalendarController::class, 'index'])->name('books.index');
+    Route::get('/books/index/{id}', function () {
+        return redirect()->route('booking');
+    })->name('books.index');
     Route::post('/books', [CalendarController::class, 'store'])->middleware('throttle:bookings')->name('books.store');
     Route::patch('/books/update/{id}', [CalendarController::class, 'update'])->middleware(['auth', 'is_admin'])->name('books.update');
     Route::delete('/books/delete/{id}', [CalendarController::class, 'delete'])->middleware(['auth', 'is_admin'])->name('books.delete');
@@ -72,6 +74,7 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/travel', [PageController::class, 'categorytravel'])->name('categorytravel');
     Route::get('/rooms', [PageController::class, 'rooms'])->name('rooms');
     Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/domik', [PageController::class, 'house'])->name('house');
     Route::get('/tour', [PageController::class, 'tour'])->name('tour');
     Route::get('/contactspage', [PageController::class, 'contactspage'])->name('contactspage');
     Route::get('/booking', [PageController::class, 'booking'])->name('booking');

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('title', $travel->__('title'))
+@section('description', $travel->__('title').'. '.__('main.meta_travel'))
 
 @section('content')
 
@@ -62,6 +63,9 @@
                                     <div class="modal-body">
                                         <form action="{{ route('travel_mail') }}" method="post">
                                             @csrf
+                                            <div style="position:absolute;left:-9999px" aria-hidden="true">
+                                                <input type="text" name="company" tabindex="-1" autocomplete="off">
+                                            </div>
                                             <input type="hidden" value="{{ $travel->__('title') }}" name="travel">
                                             <div class="form-group">
                                                 <label for="choose">@lang('main.what_kind')</label>

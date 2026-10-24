@@ -40,6 +40,16 @@ class PageController extends Controller
         return view('pages.contacts', compact('page', 'contacts'));
     }
 
+    public function house()
+    {
+        $photos = [];
+        for ($i = 1; $i <= 16; $i++) {
+            $photos[] = 'img/houses/'.sprintf('%02d', $i).'.jpg';
+        }
+
+        return view('pages.house', compact('photos'));
+    }
+
     public function booking()
     {
         $bookingData = [

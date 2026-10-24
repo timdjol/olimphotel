@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('title', $room->__('title'))
+@section('description', $room->__('title').'. '.__('main.meta_rooms'))
 
 @section('content')
 

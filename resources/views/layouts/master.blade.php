@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -7,13 +7,18 @@
     <!-- <base href="/"> -->
 
     <title>@yield('title') - OlimpHotelTravel</title>
-    <meta name="description" content="">
+    <meta name="description" content="@yield('description', __('main.meta_description'))">
+    <link rel="canonical" href="{{ url()->current() }}">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Template Basic Images Start -->
-    <meta property="og:image" content="path/to/image.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@yield('title') - OlimpHotelTravel">
+    <meta property="og:description" content="@yield('description', __('main.meta_description'))">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ url('/storage/app/public/sliders/C04rgeSW4qbsNbbAGbn2j15zPqojnQBbJdchuGUN.jpg') }}">
     <link rel="icon" href="{{route('index')}}/img/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="{{route('index')}}/img/favicon.png">
     <!-- Template Basic Images End -->
@@ -72,6 +77,7 @@
                         <li @routeactive('index')><a href="{{route('index')}}">@lang('main.home')</a></li>
                         <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
                         <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
+                        <li @routeactive('house')><a href="{{route('house')}}">@lang('main.house')</a></li>
                         <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
                         <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                         </a></li>
@@ -106,6 +112,15 @@
             @if(session()->has('warning'))
                 <p class="alert alert-warning">{{ session()->get('warning') }}</p>
             @endif
+            @if(session()->has('form_ok'))
+                <p class="alert alert-success">{{ session('form_ok') }}</p>
+            @endif
+            @if(session()->has('form_error'))
+                <p class="alert alert-danger">{{ session('form_error') }}</p>
+            @endif
+            @if($errors->any())
+                <p class="alert alert-danger">{{ $errors->first() }}</p>
+            @endif
         </div>
     </div>
 </div>
@@ -137,6 +152,7 @@
                         <ul>
                             <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
                             <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
+                            <li @routeactive('house')><a href="{{route('house')}}">@lang('main.house')</a></li>
                             <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
                             <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                             </a></li>

@@ -3,6 +3,7 @@
 {{--@section('title', 'Главная страница')--}}
 
 @section('title', app()->getLocale() === 'ru' ? 'Отель Olimp, Чолпон-Ата - Официальный сайт' : 'Olimp Hotel, Cholpon-Ata - Official Site')
+@section('description', __('main.meta_description'))
 
 @section('content')
 
