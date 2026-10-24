@@ -33,22 +33,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-12">
-                    <script src="https://maps.api.2gis.ru/2.0/loader.js"></script>
-                    <div id="map" style="width: 100%; height: 450px;"></div>
-                    <script>
-                        DG.then(function () {
-                            var map = DG.map('map', {
-                                center: [42.6512993, 77.1130353],
-                                zoom: 14
-                            });
-
-                            DG.marker([42.6512993, 77.1130353], { scrollWheelZoom: false })
-                                .addTo(map)
-                                .bindLabel('OlimpHotel&Travel', {
-                                    static: true
-                                });
-                        });
-                    </script>
+                    <div class="contacts-map">
+                        <iframe
+                            title="Эко-отель Олимп, Чолпон-Ата"
+                            src="https://maps.google.com/maps?q=42.6512993,77.1130353&hl={{ app()->getLocale() }}&z=16&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                     {!! $page->__('description') !!}
                     <form action="{{ route('contact_mail') }}" method="post">
                         <div class="row">

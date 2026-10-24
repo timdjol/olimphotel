@@ -28,7 +28,7 @@
     <!-- Custom Browsers Color End -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{route('index')}}/css/main.min.css?ver=1.2">
-    <link rel="stylesheet" href="{{route('index')}}/css/style.css">
+    <link rel="stylesheet" href="{{route('index')}}/css/style.css?ver=1.4">
 
     <!-- start head script -->
     <script type='text/javascript'>
@@ -75,13 +75,13 @@
                     <a href="#" class="toggle-mnu d-xl-none d-lg-none"><span></span></a>
                     <ul>
                         <li @routeactive('index')><a href="{{route('index')}}">@lang('main.home')</a></li>
-                        <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
+                        <li @routeactive('rooms', 'room')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
                         <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
                         <li @routeactive('house')><a href="{{route('house')}}">@lang('main.house')</a></li>
-                        <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
+                        <li @routeactive('categorytravel', 'travel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
                         <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                         </a></li>
-                        <li><a href="{{route('tour')}}" class="more">3D Tour</a></li>
+                        <li @routeactive('tour')><a href="{{route('tour')}}" class="more">3D Tour</a></li>
 
                     </ul>
                     <ul class="lang">
@@ -140,7 +140,7 @@
                         <h4>@lang('main.rooms')</h4>
                         <ul>
                             @foreach($rooms as $room)
-                                <li><a href="{{ route('room', $room->code) }}">{{ $room->__('title')
+                                <li @if(request()->routeIs('room') && request()->route('room') === $room->code) class="current" @endif><a href="{{ route('room', $room->code) }}">{{ $room->__('title')
                                 }}</a></li>
                             @endforeach
                         </ul>
@@ -150,10 +150,10 @@
                     <div class="footer-item">
                         <h4>@lang('main.navigation')</h4>
                         <ul>
-                            <li @routeactive('rooms')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
+                            <li @routeactive('rooms', 'room')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
                             <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
                             <li @routeactive('house')><a href="{{route('house')}}">@lang('main.house')</a></li>
-                            <li @routeactive('categorytravel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
+                            <li @routeactive('categorytravel', 'travel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
                             <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                             </a></li>
                         </ul>

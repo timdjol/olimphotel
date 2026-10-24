@@ -31,22 +31,16 @@
                 </div>
             </div>
             <div class="row">
-                <script src="https://maps.api.2gis.ru/2.0/loader.js"></script>
-                <div id="map" style="width: 100%; height: 300px;"></div>
-                <script>
-                    DG.then(function () {
-                        var map = DG.map('map', {
-                            center: [{{$hotel->lat}}, {{$hotel->lng}}],
-                            zoom: 14
-                        });
-
-                        DG.marker([{{$hotel->lat}}, {{$hotel->lng}}], {scrollWheelZoom: false})
-                            .addTo(map)
-                            .bindLabel('{{$hotel->__('title')}}', {
-                                static: true
-                            });
-                    });
-                </script>
+                <iframe
+                    title="{{ $hotel->__('title') }}"
+                    src="https://maps.google.com/maps?q={{ $hotel->lat }},{{ $hotel->lng }}&hl={{ app()->getLocale() }}&z=16&output=embed"
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
