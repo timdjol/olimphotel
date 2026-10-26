@@ -123,6 +123,47 @@ nav ul li.current a.more{
 header{
     border-bottom: 1px solid #ddd;
 }
+@media (min-width: 992px){
+    header .row{
+        flex-wrap: nowrap;
+    }
+    header .col-md-2{
+        flex: 0 0 120px;
+        max-width: 120px;
+    }
+    header .col-md-10{
+        flex: 1 1 auto;
+        max-width: none;
+        width: auto;
+    }
+    header nav{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+    header nav > ul{
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+    header nav ul.lang{
+        margin-left: 16px;
+    }
+    header nav ul li{
+        margin-left: 25px;
+    }
+    header nav > ul:first-of-type li:first-child{
+        margin-left: 0;
+    }
+    header nav ul li a{
+        font-size: 15px;
+    }
+    header nav ul li a.more{
+        padding: 8px 14px;
+    }
+}
 .slider-item{
     background-position: top center;
     height: 90vh;

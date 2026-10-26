@@ -50,6 +50,16 @@ class PageController extends Controller
         return view('pages.house', compact('photos'));
     }
 
+    public function restaurant()
+    {
+        $photos = [];
+        for ($i = 1; $i <= 16; $i++) {
+            $photos[] = 'img/restaurant/'.sprintf('%02d', $i).'.jpg';
+        }
+
+        return view('pages.restaurant', compact('photos'));
+    }
+
     public function booking()
     {
         $bookingData = [

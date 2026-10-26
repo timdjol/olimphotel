@@ -75,6 +75,7 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/rooms', [PageController::class, 'rooms'])->name('rooms');
     Route::get('/about', [PageController::class, 'about'])->name('about');
     Route::get('/domik', [PageController::class, 'house'])->name('house');
+    Route::get('/restaurant', [PageController::class, 'restaurant'])->name('restaurant');
     Route::get('/tour', [PageController::class, 'tour'])->name('tour');
     Route::get('/contactspage', [PageController::class, 'contactspage'])->name('contactspage');
     Route::get('/booking', [PageController::class, 'booking'])->name('booking');

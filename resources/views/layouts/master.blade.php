@@ -28,7 +28,7 @@
     <!-- Custom Browsers Color End -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{route('index')}}/css/main.min.css?ver=1.2">
-    <link rel="stylesheet" href="{{route('index')}}/css/style.css?ver=1.4">
+    <link rel="stylesheet" href="{{route('index')}}/css/style.css?ver=1.6">
 
     <!-- start head script -->
     <script type='text/javascript'>
@@ -78,6 +78,7 @@
                         <li @routeactive('rooms', 'room')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
                         <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
                         <li @routeactive('house')><a href="{{route('house')}}">@lang('main.house')</a></li>
+                        <li @routeactive('restaurant')><a href="{{route('restaurant')}}">@lang('main.restaurant')</a></li>
                         <li @routeactive('categorytravel', 'travel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
                         <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                         </a></li>
@@ -153,6 +154,7 @@
                             <li @routeactive('rooms', 'room')><a href="{{route('rooms')}}">@lang('main.rooms')</a></li>
                             <li @routeactive('about')><a href="{{route('about')}}">@lang('main.about')</a></li>
                             <li @routeactive('house')><a href="{{route('house')}}">@lang('main.house')</a></li>
+                            <li @routeactive('restaurant')><a href="{{route('restaurant')}}">@lang('main.restaurant')</a></li>
                             <li @routeactive('categorytravel', 'travel')><a href="{{route('categorytravel')}}">@lang('main.travel')</a></li>
                             <li @routeactive('contactspage')><a href="{{route('contactspage')}}">@lang('main.contacts')
                             </a></li>
