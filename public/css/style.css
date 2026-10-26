@@ -164,6 +164,15 @@ header{
         padding: 8px 14px;
     }
 }
+.rooms .btn-wrap .more + .more{
+    margin-left: 10px;
+}
+@media (max-width: 650px){
+    .rooms .btn-wrap .more + .more{
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
 .slider-item{
     background-position: top center;
     height: 90vh;

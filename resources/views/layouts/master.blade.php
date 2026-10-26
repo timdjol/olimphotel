@@ -28,7 +28,7 @@
     <!-- Custom Browsers Color End -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{route('index')}}/css/main.min.css?ver=1.2">
-    <link rel="stylesheet" href="{{route('index')}}/css/style.css?ver=1.6">
+    <link rel="stylesheet" href="{{route('index')}}/css/style.css?ver=1.7">
 
     <!-- start head script -->
     <script type='text/javascript'>

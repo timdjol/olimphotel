@@ -71,6 +71,25 @@
                     </div>
                 @endif
             @endforeach
+            <div class="row rooms-item">
+                <div class="col-md-6" data-aos="fade-right" data-aos-duration="2000">
+                    <a href="{{ route('house') }}">
+                        <div class="img" style="background-image: url({{ url('img/houses/01.jpg') }})"></div>
+                    </a>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="2000">
+                    <h3>@lang('main.house')</h3>
+                    @if(app()->getLocale() === 'en')
+                        <p>The new fairy-tale cottages are open. A cozy stay on the shore of Issyk-Kul.</p>
+                    @else
+                        <p>Сказочные новые домики уже открыты и принимают гостей. Уютная атмосфера и комфорт на берегу Иссык-Куля.</p>
+                    @endif
+                    <div class="btn-wrap">
+                        <a href="{{ route('house') }}" class="more">@lang('main.more')</a>
+                        <a href="{{ route('booking') }}" class="more">@lang('main.book')</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
